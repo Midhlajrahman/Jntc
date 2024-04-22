@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../../includes/header.html' %}
+    
+    <section id="gallery-visuals">
+        <div class="wrapper">
+            <h3 class="grey-content">Gallery</h3>
+            <h2>A visual <span class="blue_color">showcase</span> of our campus and programs</h2>
+            <div style="display:flex;">
+            <div class="visual">
+                {% for tag in events %}
+                <div class="showcase {{tag.title}}">
+                    <h5>{{tag.title|capfirst}}</h5>
+                </div>
+                {% endfor %}
+                <a href="{% url 'resources:galleries_page' %}" class="showcase-button view-more-btn">
+                    <span>
+                    <img src="{% static 'assets/icons/arrow_forward.svg' %}" alt="Image">
+                    </span>
+                </a>
+            </div>
+        </div>
+            {% for event in events %}
+            <div class="gallery-details {{event.title}}" gallery-index="{{event.id}}">
+                <h3>{{event.title|capfirst}}</h3>
+                <div class="collashe">
+                    {% for gallery in event.gallery.all|slice:8 %}
+                    <div class="items">
+                        <img src="{{gallery.image.url}}" alt="Image" />
+                    </div>
+                    {% endfor %}
+                </div>    
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {% include "../../includes/footer.html" %}
+    {% endblock content %}

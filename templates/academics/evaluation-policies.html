@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load paginator_tags %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/programs/evaluation-policies.css' %}" />
+{% endblock stylesheets %}
+
+{% block content %}
+{% include '../includes/header.html' %}
+
+        <!-- spotlight >  -->
+        <section id="spotlight" style="background: linear-gradient(90deg, #032a58 38.86%, rgba(3, 42, 88, 0) 100%),
+        url({{spotlight.image.url}});background-repeat:no-repeat;background-size:cover;">
+            <section class="wrapper-secondary">
+                <div class="left">
+                    <h1>{{spotlight.title|capfirst}}</h1>
+                    <p>{{spotlight.sub_title}}</p>
+                </div>
+            </section>
+        </section>
+        <!-- spotlight > End -->
+
+        <!-- cardsview -->
+        <section id="evalution-policy">
+            <section class="wrapper-secondary">
+                <div class="top">
+                    <h1>All Files</h1>
+                    <div class="view-type">
+                        <div class="card-icon active">
+                            <img
+                                src="{% static 'assets/images/student-zone/card-icon.svg' %}"
+                                alt="card-icon"
+                            />
+                        </div>
+                        <div class="list-icon">
+                            <img
+                                src="{% static 'assets/images/student-zone/list-icon.svg' %}"
+                                alt="list-icon"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom card-view-box active">
+                    <div class="content">
+                        {% for file in files %}
+                        <div class="download-card">
+                            <div class="name">
+                                <div class="icon">
+                                    {% if file.file_ext == 'jpg' %}
+                                    <img
+                                        src="{% static 'assets/images/b-ed/jpg.svg' %}"
+                                        alt="pdf-icon"
+                                    />
+                                    {% else %}
+                                    <img
+                                        src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                        alt="pdf-icon"
+                                    />
+                                    {% endif %}
+                                </div>
+                                <h2>{{file.name}}</h2>
+                            </div>
+                            <div class="image">
+                                <img
+                                    src="{{file.image.url}}"
+                                    alt="Download-image"
+                                />
+                            </div>
+                            <div class="download">
+                                <h3>{{file.date|date:'d M, Y'}}</h3>
+                                <a
+                                    download
+                                    href="{{file.file.url}}"
+                                    class="download-icon"
+                                >
+                                    <img
+                                        src="{% static 'assets/images/student-zone/download-icon.svg' %}"
+                                        alt="download-icon"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="list-view-box">
+                    <div class="content">
+                        <div class="first-row">
+                            <h2>File Name</h2>
+
+                            <div class="right">
+                                <h2 class="date">Date</h2>
+                                <h2 class="download">Download</h2>
+                            </div>
+                        </div>
+                        {% for file in files %}
+                        <div class="row">
+                            <div class="left">
+                                <div class="pdf-icon">
+                                    <img
+                                        src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                        alt="pdf"
+                                    />
+                                </div>
+                                <h2>{{file.name}}</h2>
+                            </div>
+                            <div class="right">
+                                <h2 class="date">{{file.date|date:"d M, Y"}}</h2>
+                                <a
+                                    download
+                                    href="{{file.file.url}}"
+                                    class="download"
+                                >
+                                    <img
+                                        src="{% static 'assets/images/student-zone/download-icon.svg' %}"
+                                        alt="download"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if files.has_other_pages %}
+                <div class="pagination">
+                    {% if files.has_previous %}
+                    <a
+                        href="?page={{files.previous_page_number}}"
+                        class="left-arrow-box"
+                    >
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/left-arrow-black.svg' %}"
+                                alt="left-arrow"
+                            />
+                        </div>
+                        <span>Previous</span>
+                    </a>
+                    {% else %}
+                    <a
+                        href="#"
+                        class="left-arrow-box disabled"
+                    >
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/left-arrow-black.svg' %}"
+                                alt="left-arrow"
+                            />
+                        </div>
+                        <span>Previous</span>
+                    </a>
+                    {% endif %}
+
+
+                    <div class="middle">
+                        {% get_elided_page_range files.paginator files.number as page_range %}
+                        {% for count in page_range %}
+                        {% if files.number == count %}
+                        <a
+                            href="?page={{count}}"
+                            class="page-number active"
+                            >{{count}}</a
+                        >
+                        {% else %}
+                        <a
+                            href="?page={{count}}"
+                            class="page-number"
+                            >{{count}}</a
+                        >
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    {% if files.has_next %}
+                    <a
+                        href="?page={{files.next_page_number}}"
+                        class="right-arrow-box"
+                    >
+                        <span>Next</span>
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/right-arrow-black.svg' %}"
+                                alt="right-arrow"
+                            />
+                        </div>
+                    </a>
+                    {% else %}
+                    <a
+                    href="#"
+                    class="right-arrow-box disabled"
+                >
+                    <span>Next</span>
+                    <div class="icon">
+                        <img
+                            src="{% static 'assets/images/news-events/right-arrow-black.svg' %}"
+                            alt="right-arrow"
+                        />
+                    </div>
+                </a>
+                {% endif %}
+                </div>
+                {% endif %}
+            </section>
+        </section>
+        <!-- cardview > End -->
+
+        {% include '../includes/footer.html' %}
+        {% endblock content %}

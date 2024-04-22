@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../includes/header.html' %}
+    
+        <!-- about -->
+    
+        <section id="aboutus"
+            style="background: linear-gradient(90deg, #032A58 43.86%, rgba(3, 42, 88, 0) 100%), url('{{spotlight.image.url}}'); background-size:cover; background-repeat:no-repeat;">
+            <div class="wrapper">
+                <div class="title">
+                    <h2>{{spotlight.title|capfirst}}</h2>
+                    <h4>{{spotlight.sub_title}}</h4>
+                </div>
+            </div>
+        </section> <!-- aboutus End -->
+    
+        <!-- our history -->
+        <section id="history">
+            <div class="wrapper">
+                <div class="history-content">
+                    <div class="left-box">
+                        <div class="img-container">
+                            <img src="{{history.image.url}}" alt="Image" />
+                        </div>
+                    </div>
+                    <div class="right-box">
+                        <h3>{{history.title|capfirst}}</h3>
+                        <p>{{history.description|truncatewords:75}}
+                        </p>
+                        <div class="bottom">
+                            <button onclick="window.location.href ='{% url 'about:history_page' %}';" class="btn-primary">
+                                Read More <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- wrapper End -->
+        </section> <!-- #history > End -->
+
+        <section id="history">
+            <div class="wrapper">
+                <div class="history-content">
+                    <div class="right-box">
+                        <h3>{{foundation.title|capfirst}}</h3>
+                        <p>{{foundation.description|truncatewords:75}}
+                        </p>
+                        <div class="bottom">
+                            <button onclick="window.location.href ='{% url 'about:foundation_page' %}';" class="btn-primary">
+                                Read More <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="left-box">
+                        <div class="img-container">
+                            <img src="{{foundation.image.url}}" alt="Image" />
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- wrapper End -->
+        </section> 
+    
+        <!-- vision -->
+        <section id="vision">
+            <div class="wrapper">
+                <div class="left-container">
+                    {% for goal in goal_gallery.goal.all|slice:":2" %}
+                    <div class="content-box">
+                        <div class="content">
+                            <h3>{{goal.title|capfirst}}</h3>
+                            <p>{{goal.description|truncatewords:40}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="right-container">
+                    <div class="img-container">
+                        <img src="{{goal_gallery.image.url}}" alt="Image" />
+                    </div>
+                </div>
+            </div>
+        </section> <!-- vision > End -->
+    
+        <!-- our objectives  -->
+        <section id="objectives">
+            <div class="wrapper">
+                <div class="top-title">
+                    <h2>Our Objectives</h2>
+                </div>
+                <div class="objects">
+                    {% for instance in objective %}
+                    <div class="content-box">
+                        <div class="count">
+                            <h2>0{{forloop.counter}}</h2>
+                        </div>
+                        <div class="details">
+                            <p>{{instance.description|truncatewords:45}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section> <!-- #objective > End -->
+    
+        <!-- management -->
+        <section id="management">
+            <div class="wrapper">
+                <div class="top-title">
+                    <h3>Our Management</h3>
+                </div>
+                <ul class="card">
+                    {% for member in management %}
+                    <li>
+                        <div class="img-container">
+                            <img src="{{member.image.url}}" alt="Profile" />
+                        </div>
+                        <div class="details">
+                            <h3>{{member.name}}</h3>
+                            <span>{{member.designation}}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div> <!-- Wrapper > End -->
+        </section> <!-- #management > End -->
+
+             <!-- Staff -->
+             <section id="members">
+                <div class="wrapper">
+                    <div class="top-title">
+                        <h3>Our Staffs</h3>
+                    </div>
+                    <ul class="all-team">
+                       {% for staff in staffs %}
+                        <li>
+                            <div class="img-container">
+                                <img src="{{staff.image.url}}" alt="Profile" />
+                            </div>
+                            <div class="details">
+                                <h4>{{staff.name}}</h4>
+                                <span>{{staff.designation}}</span>
+                            </div>
+                        </li>
+                        {% endfor %} 
+                    </ul>
+                </div>
+            </section>
+    
+        <!-- members -->
+        <section id="members">
+            <div class="wrapper">
+                <div class="top-title">
+                    <h3>Our Trust Board Members</h3>
+                </div>
+                <ul class="all-team">
+                   {% for member in Faculty %}
+                    <li>
+                        <div class="img-container">
+                            <img src="{{member.image.url}}" alt="Profile" />
+                        </div>
+                        <div class="details">
+                            <h4>{{member.name}}</h4>
+                            <span>{{member.designation}}</span>
+                        </div>
+                    </li>
+                    {% endfor %} 
+                </ul>
+            </div>
+        </section>
+    
+        <section id="members">
+            <div class="wrapper">
+                <div class="top-title">
+                    <h3>Our Administrative Staffs</h3>
+                </div>
+                <ul class="all-team">
+                    {% for member in administrative_staff %}
+                    <li>
+                        <div class="img-container">
+                            <img src="{{member.image.url}}" alt="Profile" />
+                        </div>
+                        <div class="details">
+                            <h4>{{member.name}}</h4>
+                            <span>{{member.designation}}</span>
+                        </div>
+                    </li>
+                    {% endfor %} 
+                </ul>
+            </div>
+        </section>
+
+        <section id="members">
+            <div class="wrapper">
+                <div class="top-title">
+                    <h3>Our Office Staff</h3>
+                </div>
+                <ul class="all-team">
+                    {% for office_staff in office_staffs %}
+                    <li>
+                        <div class="img-container">
+                            <img src="{{office_staff.image.url}}" alt="Profile" />
+                        </div>
+                        <div class="details">
+                            <h4>{{office_staff.name}}</h4>
+                            <span>{{office_staff.designation}}</span>
+                        </div>
+                    </li>
+                    {% endfor %} 
+                </ul>
+            </div>
+        </section>
+
+            <section id="management">
+                <div class="wrapper">
+                    <div class="top-title">
+                        <h3>Our PTA Committee</h3>
+                    </div>
+                    <ul class="card">
+                        {% for pta_members in pta_commitee %}
+                        <li>
+                            <div class="img-container">
+                                <img src="{{pta_members.image.url}}" alt="Profile" />
+                            </div>
+                            <div class="details">
+                                <h3>{{pta_members.name}}</h3>
+                                <span>{{pta_members.designation}}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div> 
+            </section> 
+            
+            <section id="management">
+                <div class="wrapper">
+                    <div class="top-title">
+                        <h3>Our Committee</h3>
+                    </div>
+                    <ul class="card">
+                        {% for commitee_member in commitee %}
+                        <li>
+                            <div class="img-container">
+                                <img src="{{commitee_member.image.url}}" alt="Profile" />
+                            </div>
+                            <div class="details">
+                                <h3>{{commitee_member.name}}</h3>
+                                <span>{{commitee_member.designation}}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div> 
+            </section> 
+    
+        <!-- annual report -->
+        <section id="annualreport">
+            <div class="wrapper">
+                <div class="title">
+                    <h3>Annual Reports</h3>
+                </div>
+                <ul class="download">
+                    {% for report in annual_reports %}
+                    <li>
+                        <div class="container">
+                            <div class="date-info">
+                                <div class="img-container">
+                                    <img src="{% static 'assets/icons/pdf.svg' %}" alt="Pdf-icon" />
+                                </div>
+                                <span>{{report.year_of_report}}</span>
+                            </div>
+                            <a href="{{report.file.url}}" download>
+                                <img src="{% static 'assets/icons/download.svg' %}" alt="Icon" />
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div><!-- Wrapper > End -->
+        </section><!--#annualreport > End -->
+    
+        <!-- Rules and regulations -->
+        <section id="rules">
+            <div class="wrapper">
+                <div class="title">
+                    <h3>Rules and Regulations</h3>
+                </div>
+                <ul class="download">
+                    <li>
+                        <div class="container">
+                            <div class="date-info">
+                                <div class="img-container">
+                                    <img src="{% static 'assets/icons/pdf.svg' %}" alt="Pdf-icon" />
+                                </div>
+                                <span>{{rules_and_regulations.title|capfirst}}</span>
+                            </div>
+                            <a href="{{rules_and_regulations.file.url}}" download>
+                                <img src="{% static 'assets/icons/download.svg' %}" alt="Icon" />
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- wrapper End -->
+        </section> <!--#rules > End -->
+    
+          
+        {% include "../includes/footer.html" %}
+        {% endblock content %}

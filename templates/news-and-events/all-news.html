@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/news-and-events/all-news.css' %}" />
+{% endblock  %}
+{% load news_and_events_paginator_tags %}
+{% block content %}
+        {% include '../includes/header.html' %}
+
+        <!-- all-news >  -->
+        <section id="all-news">
+            <section class="wrapper-secondary">
+                <h3>All News</h3>
+                <h1>Stay <span>Updated</span> with the Latest News</h1>
+                <div class="container">
+                    {% for news in latest_news %}
+                    <div class="card">
+                        <div class="image card-slider">
+                            {% for gallery in news.gallery.all %}
+                            <div class="card-image">
+                                <img
+                                    src="{{gallery.image.url}}"
+                                    alt="news"
+                                />
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="button-box">
+                            <button
+                                class="slick-prev slick-arrow"
+                                aria-label="Previous"
+                                type="button"
+                            >
+                                <img
+                                    src="{% static 'assets/images/news-events/left-arrow.svg' %}"
+                                    alt="Icon"
+                                />
+                            </button>
+                            <button
+                                class="slick-next slick-arrow"
+                                aria-label="Next"
+                                type="button"
+                            >
+                                <img
+                                    src="{% static 'assets/images/news-events/right-arrow.svg' %}"
+                                    alt="Icon"
+                                />
+                            </button>
+                        </div>
+                        <div onclick="window.location.href='{% url 'web:news_single_page' uuid=news.id %}'" class="bottom">
+                            <span>{{news.date|date:"d M Y"}}</span>
+                            <h4>{{news.title|capfirst}}</h4>
+                            <p>
+                                {{news.description}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% if latest_news.has_other_pages %}
+                <div class="pagination">
+                    {% if latest_news.has_previous %}
+                    <a
+                        href="?page={{latest_news.previous_page_number}}"
+                        class="left-arrow-box"
+                    >
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/left-arrow-black.svg' %}"
+                                alt="left-arrow"
+                            />
+                        </div>
+                        <span>Previous</span>
+                    </a>
+                    {% else %}
+                    <a
+                        class="left-arrow-box disabled"
+                    >
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/left-arrow-black.svg' %}"
+                                alt="left-arrow"
+                            />
+                        </div>
+                        <span>Previous</span>
+                    </a>
+                    {% endif %}
+
+
+                    <div class="middle">
+                        {% get_elided_page_range latest_news.paginator latest_news.number as page_range %}
+                        {% for count in page_range %}
+                        {% if latest_news.number == count %}
+                        <a
+                            href="?page={{count}}"
+                            class="page-number active"
+                            >{{count}}</a
+                        >
+                        {% else %}
+                        <a
+                            href="?page={{count}}"
+                            class="page-number"
+                            >{{count}}</a
+                        >
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    {% if latest_news.has_next %}
+                    <a
+                        href="?page={{latest_news.next_page_number}}"
+                        class="right-arrow-box"
+                    >
+                        <span>Next</span>
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/right-arrow-black.svg' %}"
+                                alt="right-arrow"
+                            />
+                        </div>
+                    </a>
+                    {% else %}
+                    <a
+                        class="right-arrow-box disabled"
+                    >
+                        <span>Next</span>
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/news-events/right-arrow-black.svg' %}"
+                                alt="right-arrow"
+                            />
+                        </div>
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </section>
+        </section>
+        <!-- all-news > End -->
+        {% include '../includes/footer.html' %}
+{% endblock content %}

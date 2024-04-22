@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    {% include './includes/header.html' %}
+        <section id="construction">
+            <div class="wrapper">
+                <div class="comingsoon-page">
+                    <div class="contents">
+                        <img src="{% static 'assets/images/comingsoon.png' %}" alt="Image" />
+                    </div> 
+                    <p>This page is under construction</p>
+                    <a href="{% url 'web:home_page' %}" class="btn-primary">Back to Home</a>  
+                </div>
+            </div>
+        </section>
+    
+    {% include './includes/footer.html' %}  
+    {% endblock content %}

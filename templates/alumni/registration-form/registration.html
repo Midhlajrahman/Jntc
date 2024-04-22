@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../../includes/header.html' %}
+
+<section id="registration">
+	<div class="top">
+		<h3>Glad to see you again!</h3>
+		<p>Join the alumni community and stay informed of events and opportunities</p>
+	</div>
+	<div class="main-container">
+		<div class="header">
+			<ul>
+
+				<li class="active form_1_progessbar">
+					<div class="step">
+						<div class="bullet">
+							<div class="check fas fa-check"></div>
+							<span class="remove">1</span>
+						</div>
+						<p>Personal Informations</p>
+					</div>
+				</li>
+
+				<li class="form_2_progessbar">
+					<div class="step">
+						<div class="bullet">
+							<div class="check check_two fas fa-check"></div>
+							<span class="remove_two">2</span>
+						</div>
+						<p>Educational details</p>
+					</div>
+				</li>
+
+				<li class="form_3_progessbar">
+					<div class="step">
+						<div class="bullet">
+							<div class="check check_three fas fa-check"></div>
+							<span class="remove_three">3</span>
+						</div>
+						<p>Insights and Experiences</p>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+		<div class="form_wrap">
+			<div class="form_1 data_info" style="display: block;">
+				<form class="first_form" method="POST" action="" enctype="multipart/form-data" id="form_1">
+					{% csrf_token %}
+					<div class="form_container">
+						{% for field in form_1 %}
+						{% if field.name != 'is_verified' and field.name != 'is_deleted' and field.name != 'image' and field.name != 'address' %}
+						<div class="input_wrap">
+							<label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="star">*</span>{% endif %}</label>
+							{{ field }}
+							<p class="error">{{ field.errors|first }}</p>
+						</div>
+						{% endif %}
+						{% endfor %}
+
+						<div class="input_wrap adress">
+							<div class="label"><label for="adress">Present address<span class="star">*</span></label>
+							</div>
+							{{ form_1.address }}
+							<p class="error"></p>
+						</div>
+
+						<div class="input_wrap adress">
+							<div class="label"><label for="photo">Upload photo (Optional)</label></div>
+							<div class="input dashed">
+								<label for="file-name" class="logoContainer">
+									<div>
+										{% if form_1.image.value %}
+										<img src="{{form_1.image.value.url}}">
+										{% else %}
+										<img src="{% static 'assets/icons/gallery.svg' %}">
+										{% endif %}
+									</div>
+									<p class="choose">Choose image from your computer</p>
+								</label>
+								<div class="fileContainer sprite">
+									<input type="file" id="image" name="image" value="{{form_1.image.value}}" />
+									{% if form_1.image.value %}
+									<span class="file-name">{{form_1.image.value|cut:'alumni/registration/image/'}} <img
+											src="{% static 'assets/icons/upload.svg' %}" /></span>
+									{% else %}
+									<span class="file-name">Upload <img
+											src="{% static 'assets/icons/upload.svg' %}" /></span>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="form_2 data_info" style="display: none;">
+				<form class="second_form" id="form_2" action="" method="POST">
+					<div class="form_container">
+						{% for field in form_2 %}
+						<div class="input_wrap">
+							<label for="{{ field.id_for_label }}">{{ field.label }}<span class="star">*</span></label>
+							{{ field }}
+							<p class="error">{{ field.errors|first }}</p>
+						</div>
+						{% endfor %}
+					</div>
+				</form>
+			</div>
+
+			<div class="form_3 data_info" style="display: none;">
+				<form class="third_form" id="form_3" action="" method="POST">
+					<div class="form_container">
+						{% for field in form_3 %}
+						<div class="input_wrap adress">
+							<div class="label"><label for="{{ field.id_for_label }}">{{ field.label }}</label></div>
+							{{ field }}
+							<p class="error">{{ field.errors|first }}</p>
+						</div>
+						{% endfor %}
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="btns_wrap">
+			<div class="common_btns form_1_btns" style="display: flex;">
+				<button class="clear resetFirst" type="button">Clear form</button>
+				<button type="submit" class="btn_next">Next <span class="icon"><i
+							class="fa fa-angle-right"></i></span></button>
+			</div>
+
+			<div class="common_btns form_2_btns" style="display: none;">
+				<button class="clear resetSecond" type="button">Clear form</button>
+				<div>
+					<button type="button" class="btn_back"><span class="icon"><i
+								class="fa fa-angle-left"></i></span>Previous</button>
+					<button type="submit" class="btn_next">Next <span class="icon"><i
+								class="fa fa-angle-right"></i></span></button>
+				</div>
+			</div>
+
+			<div class="common_btns form_3_btns" style="display: none;">
+				<button class="resetThird clear" type="button">Clear form</button>
+				<div>
+					<button type="submit" id="submit" class="btn_done">Submit</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal_wrapper">
+		<div class="shadow"></div>
+		<div class="success_wrap">
+			<div class="modal_icon"><i class="fa fa-check"></i></div>
+			<h3>Success!</h3>
+			<p>Your registration successfully sent</p>
+			<button type="button" onclick="window.location.href='{% url 'alumni:alumni_page' %}'"
+				class="btn_done">Done</button>
+		</div>
+	</div>
+
+
+</section>
+
+
+{% include "../../includes/footer.html" %}
+{% endblock content %}

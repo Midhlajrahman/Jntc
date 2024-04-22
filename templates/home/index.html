@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../includes/header.html' %}
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div class="left-box">
+                <ul>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'academic:programmes_page' %}">B Ed and IGNOU Courses </a></li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'resources:gallery_page' %}">Gallery</a></li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'iqac:iqac_page' %}">IQAC</a></li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'web:coming_soon_page' %}">Exam Registration</a></li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'web:coming_soon_page' %}">Admission</a></li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'student_zone:results_status' %}">2022-23 Result</a></li>
+                    <li><i class="fa-solid fa-arrow-right"></i> <a href="{% url 'academic:academic_calender' %}">Academic Calendar</a></li>
+                </ul>
+            </div>
+        </div> <!-- Sidebar > End -->
+    
+        
+    
+        <!-- spotlight -->
+        <section id="home">
+            <section class="spotlight-slide">
+                {% for gallery in spotlight.gallery.all %}
+                <section class="spotlight" style="background-image: url({{gallery.image.url}});">
+                    <div class="headings">
+                        <h3>{{spotlight.title|capfirst}}</h3>
+                        <h1>{{spotlight.sub_title}}</h1>
+                    </div>
+                </section>
+                {% endfor %}
+            </section>
+            <div class="next">
+                <button class="slick-prev slick-arrow" aria-label="Previous" type="button">
+                    <img src="{% static 'assets/icons/slider_arrow_left.png' %}" alt="Icon" />
+                </button>
+                <button class="slick-next slick-arrow" aria-label="Next" type="button">
+                    <img src="{% static 'assets/icons/slider_arrow_right.png' %}" alt="Icon" />
+                </button>
+            </div>
+        </section>
+        <!-- #main spotlight > End -->
+    
+        <!-- banner -->
+        <div class="banner">
+            <marquee scrollamount="8">
+                <a href="javascript:void(0);"> <i class="fa-solid fa-caret-right"></i> Result - B Ed 2nd Semester Exam</a>
+                <a href="javascript:void(0);"> <i class="fa-solid fa-caret-right"></i> Research Papers invited for
+                    International Arabic Conference</a>
+                <a href="javascript:void(0);"> <i class="fa-solid fa-caret-right"></i> PG & Research Department of Physics,
+                    invites application for PhD Programme</a>
+            </marquee>
+            <button onclick="window.location.href ='#announcement';">
+                View All<i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div> <!-- banner > End -->
+    
+        <!-- about -->
+        <section id="about">
+            <div class="wrapper">
+                <div class="content">
+                    <div class="left">
+                        <div class="img-container">
+                            <img src="{{about.image.url}}" alt="Image" />
+                        </div>
+                    </div>
+                    <div class="right">
+                        <h2>{{about.title|capfirst}}</h2>
+                        <p>{{about.description|truncatewords:115}}</p>
+                        <a href="{% url 'web:home_about_page' %}" class="btn-primary" style="display:inline;">
+                            Read More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #about > End -->
+    
+        <!-- academics -->
+        <section id="academics">
+            <div class="wrapper">
+                <div class="top">
+                    <h2>{{academics_heading.title|capfirst}}</h2>
+                    <h4>{{academics_heading.sub_title}}</h4>
+                </div>
+                <div class="university">
+                    {% for academic in academics %}
+                    <div class="card">
+                        <div class="img-container">
+                            <img src="{{academic.image.url}}" alt="Image" />
+                        </div>
+                        <div class="details">
+                            <h3>{{academic.title|capfirst}}</h3>
+                            <p>{{academic.description|truncatewords:20}}</p>
+                            <a href="{% url 'web:coming_soon_page' %}">
+                                {{academic.arrow_tag}} <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="bottom">
+                    <button class="btn-primary" onclick="window.location.href='{% url 'web:coming_soon_page' %}'">
+                        View All <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div><!-- wrapper > End -->
+        </section><!-- #academics > End -->
+    
+        <!-- #events -->
+        <section id="events">
+            <div class="wrapper">
+                <div class="title">
+                    <h2>News and Events</h2>
+                </div>
+                <div class="sub-title">
+                    <h4>Latest News</h4>
+                </div>
+                <div class="card">
+                    <div class="left">
+                        {% for news in latest_news|slice:":1" %}
+                        <div class="img-container">
+                            {% for gallery in news.gallery.all|slice:1 %}
+                            <img src="{{gallery.image.url}}" alt="Image" />
+                            {% endfor %}
+                        </div>
+                        <div class="details">
+                            <div class="main-title">
+                                <h3>{{news.title|capfirst}}</h3>
+                                <span>{{news.date|date:"d M Y"}}</span>
+                            </div>
+                            <p>{{news.description}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="right">
+                        {% for news in latest_news|slice:"1:" %}
+                        <div class="cards">
+                            <div class="small-card">
+                                <div class="img-container">
+                                    {% for gallery in news.gallery.all|slice:1 %}
+                                    <img src="{{gallery.image.url}}" alt="Image" />
+                                    {% endfor %}
+                                </div>
+                                <div class="details">
+                                    <span>{{news.date|date:"d M Y"}}</span>
+                                    <h3>{{news.title|capfirst}}</h3>
+                                    <p>{{news.description|truncatewords:20}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="upcoming">
+                    <h2>Upcoming Events</h2>
+                    <div class="new-event">
+                        {% for event in events %}
+                        <div class="cards">
+                            <div class="img-container">
+                                {% for gallery in event.gallery.all|slice:1 %}
+                                <img src="{{gallery.image.url}}" alt="Image" />
+                                {% endfor %}
+                            </div>
+                            <div class="details">
+                                <span>{{event.date|date:"d M Y"}}</span>
+                                <h3>{{event.title|capfirst}}</h3>
+                                <p>{{event.description|truncatewords:20}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="bottom">
+                    
+                            <a class="btn-primary" href="{% url 'web:news_and_events_page' %}">
+                            View All <i class="fa-solid fa-arrow-right"></i></a>
+                
+                    </div>
+                </div>
+                <div>
+                    
+        </section><!-- events > End -->
+    
+        <!-- announcements -->
+        <section id="announcement">
+            <div class="wrapper">
+                <div class="top">
+                    <h4>Announcements</h4>
+                </div>
+                <div class="item">
+                    <ul>
+                        {% for announcement in announcements %}
+                        <li><i class="fa-solid fa-caret-right"></i><a href="{{announcement.link}}" target="blank">{{announcement.title|capfirst}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section> <!-- announcement > End -->
+    
+        <!-- gallery -->
+        <section id="gallery">
+            <div class="wrapper">
+                <div class="top">
+                    <h2>Moments Gallery</h2>
+                    <h4>History is a gallery of pictures in which there are few originals and many copies</h4>
+                </div>
+                <ul class="gallerys">
+                    {% if moment_gallery.title|capfirst == "go" %}
+                    <li class="video">
+                        <video>
+                            <source src="{{moment_gallery.video.url}}" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                          <div id="play-btn">
+                            <img src="{% static '/assets/icons/video-play.svg' %}" alt="play-button" />
+                          </div>
+                    </li>
+                    {% for gallery in moment_gallery.gallery.all|slice:":6" %}
+                    <li class="image">
+                        <img src="{{gallery.image.url}}" alt="Image" />
+                    </li>
+                    {% endfor %}
+                    {% else %}
+                    {% for gallery in moment_gallery.gallery.all|slice:":7" %}
+                    <li class="image">
+                        <img src="{{gallery.image.url}}" alt="Image" />
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+    
+                <div class="bottom">
+                    <a href="{% url 'resources:gallery_page' %}" class="btn-primary">
+                        View All <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+    
+            </div><!-- wrapper > End-->
+        </section><!-- gallery > End -->
+    
+        <!-- Institution -->
+        <section id="institution">
+            <div class="wrapper-secondary">
+                <div class="top">
+                    <h2>{{institution_heading.title|capfirst}}</h2>
+                    <h4>{{institution_heading.description}}</h4>
+                </div>
+                <div class="list">
+                    {% for institution in institution_heading.institution.all|slice:":4" %}
+                    <div class="card">
+                        <div class="img-container">
+                            <img src="{{institution.image.url}}" alt="Image" />
+                        </div>
+                        <div class="details">
+                            <h3>{{institution.title|capfirst}}</h3>
+                            <p>{{institution.description|truncatewords:20}}</p>
+                            <a href="{% url 'web:coming_soon_page' %}">
+                                Learn More <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+        </section> <!-- institution > End -->
+    
+        {% include "../includes/footer.html" %}
+        {% endblock content %}

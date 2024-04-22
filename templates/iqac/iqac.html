@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+{% include '../includes/header.html' %}
+        
+        <section id="iqac_spotlight" style="background: linear-gradient(90deg, #032A58 43.86%, rgba(3, 42, 88, 0) 100%), url({{spotlight.image.url}}); background-repeat: no-repeat;
+        background-size: cover; ">
+            <div class="wrapper">
+                <div class="title">
+                    <h2>{{spotlight.title|capfirst}}</h2>
+                    <h4>{{spotlight.sub_title}}</h4>
+                </div>
+            </div><!-- wrapper > End -->
+        </section> <!-- iqac_spotlight > End -->
+        
+        <section id="iqac_about">
+            <div class="work">
+                <div class="left">
+                    <h3>About IQAC</h3>
+                    {% if about.title %}
+                    <h2>{{about.title|capfirst|highlight_word:about.highlight_word|safe}}</h2>
+                    {% endif %}
+                    <p>{{about.description}}</p>
+                </div>
+                <div class="right">
+                    <div class="frame">
+                            <img
+                                src="{% static 'assets/images/iqac-bg-frame.png' %}"
+                                alt="Image"
+                            />    
+
+                            <div class="image-grid">
+                                <div class="left">
+                                    {% for gallery in about.gallery.all|slice:":1" %}
+                                    <img
+                                        src="{{gallery.image.url}}"
+                                        alt="iqac"
+                                    />
+                                    {% endfor %}
+                                </div>
+                                <div class="right">
+                                    {% for gallery in about.gallery.all|slice:"1:3" %}
+                                    <div>
+                                    <img
+                                        src="{{gallery.image.url}}"
+                                        alt="iqac"
+                                    />
+                                </div>
+                                    {% endfor %}
+                                </div>
+                            </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="vision work">
+                
+                <div class="one right">
+                    <div class="box">
+                        <img src="{{vision.member.image.url}}" alt="{{vision.member.name}}">
+                    </div>
+                    <div class="title_box">
+                        <h4>{{vision.member.name}}</h4>
+                        <h5>{{vision.member.designation}}</h5>
+                    </div>
+                </div>
+                <div class="two left">
+                    <h3>Our Vision</h3>
+                    {% if vision.title %}
+                    <h2>{{vision.title|capfirst|highlight_word:vision.highlight_word|safe}}</h2>
+                    {% endif %}
+                    <p>{{vision.description}}</p>
+                </div>
+            </div>
+            <div class="objective work">
+                <div class="three left">
+                    <h3>Our Objectives</h3>
+                    {% if objective.title %}
+                    <h2>{{objective.title|capfirst|highlight_word:objective.highlight_word|safe}}</h2>
+                    {% endif %}
+                    <p>{{objective.description}}</p>
+                </div>
+                <div class="four right">
+                    <div class="box">
+                        <img src="{{objective.member.image.url}}" alt="{{objective.member.name}}">
+                    </div>
+                    <div class="title_box">
+                        <h4>{{objective.member.name}}</h4>
+                        <h5>{{objective.member.designation}}</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+            <!-- #iqac-team -->
+        
+        <section id="iqac-team">
+            <div class="wrapper">
+                <div class="top">
+                    <h4>IQAC Team</h4>
+                    <h2>Our <span>amazing team</span> of IQAC</h2>
+                </div>
+                <ul class="all-team">
+                    {% for member in team_members %}
+                    <li>
+                        <div class="img-container">
+                            <img src="{{member.image.url}}" alt="{{member.name}}" />
+                        </div>
+                        <div class="details">
+                            <h4>{{member.name}}</h4>
+                            <span>{{member.designation}}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <hr class="line">
+                <div class="representatives">
+                    <h4>Teacher representatives</h4>
+                    <ul class="teacher">
+                        {% for member in faculty_members %}
+                        <li class="list">
+                            <h5>{{member.name}}</h5>
+                            <h6>{{member.designation}}</h6>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <hr class="line one">
+                    <div class="nominees">
+                        <div class="left">
+                            <h4>Student nominees</h4>
+                            <div class="student">
+                                {% for student in students %}
+                                <div class="list">
+                                    <h5>{{student.name}}</h5>
+                                    <h6>{{student.batch}}</h6>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="member">
+                                <h4>Alumni member</h4>
+                                <div class="list">
+                                    <h5>{{alumni_member.name}}</h5>
+                                    <h6>{{alumni_member.designation}}</h6>
+                                </div>
+                            </div>
+                            <div class="member">
+                                <h4>Local Society</h4>
+                                <div class="list">
+                                    <h5>{{society_member.name}}</h5>
+                                    <h6>{{society_member.panchayat}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </section>
+        <section id="iqac_functions">
+            <div class="wrapper">
+                <h2>Downloadable contents of <span>IQAC functions</span></h2>
+                <div class="download_box">
+                    {% for function in function_names %}
+                    <div class="section">
+                        <div class="title">
+                            <h5>{{function.name}}</h5>
+                            <span class="straight"><img src="{% static 'assets/icons/down-arrow.svg' %}" alt="Image" /></span>			
+                            <span class="rotation"><img src="{% static 'assets/icons/straight-arrow.svg' %}" alt="Image" /></span>			
+                        </div>
+                        <hr class="line">
+                        <div class="item">
+                            {% for event in function.event.all %}
+                            <div class="items">
+                                <div>
+                                    <span><img src="{% static 'assets/icons/pdf.svg' %}" alt="Image" /></span>
+                                    <span class="year">{{event.year_of_event}}</span>
+                                </div>
+                                <a href="{{event.file.url}}" download="" class="dowloadable"><img src="{% static 'assets/icons/download.svg' %}" alt="Image" /></a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section id="iqac_complaints">
+            <div class="wrapper">
+                <div class="box">
+                    <h2>Have a <span> Complaint</span> ?</h2>
+                    <p>Report a complaint for feedback, grievances, and effective resolution.</p>
+                    <div class="button">
+                        <a href="{% url 'iqac:complaint' %}" class="btn-primary report">Report <span><img src="{% static 'assets/icons/Icons.svg' %}" alt="Image"> </span> </a>
+                    </div>
+                </div>
+            </div>    
+        </section>
+        
+        {% include "../includes/footer.html" %}
+        {% endblock content %}
+            

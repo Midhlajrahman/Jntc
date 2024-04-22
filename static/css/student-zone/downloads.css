@@ -1,0 +1,709 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    background: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper-secondary {
+    width: 85%;
+    margin: 0 auto;
+}
+
+#spotlight {
+    padding: 8% 0 8%;
+    background: linear-gradient(90deg, #032a58 38.86%, rgba(3, 42, 88, 0) 100%),
+        url("../../images/news-events/spotlight-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#spotlight .left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#spotlight .left h1 {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 45px;
+}
+
+#spotlight .left p {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    width: 30%;
+}
+
+#download {
+    padding: 80px 0;
+}
+#download .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+#download .top h1 {
+    font-size: 26px;
+    color: #232323;
+    font-weight: 400;
+}
+#download .top .view-type {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#download .top .view-type .card-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+}
+#download .top .view-type .card-icon.active {
+    background-color: #e1e1e1;
+}
+#download .top .view-type .list-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+}
+#download .top .view-type .list-icon.active {
+    background-color: #e1e1e1;
+}
+#download .bottom {
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px; */
+    display: none;
+}
+#download .bottom.active {
+    display: block;
+}
+#download .bottom .content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+#download .bottom .content .download-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+}
+#download .bottom .content .download-card .name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#download .bottom .content .download-card .name .icon {
+    width: 18px;
+}
+#download .bottom .content .download-card .name h2 {
+    font-size: 16px;
+    color: #232323;
+}
+#download .bottom .content .download-card .image {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+#download .bottom .content .download-card .download {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#download .bottom .content .download-card .download h3 {
+    color: #828282;
+    font-size: 14px;
+    font-weight: 500;
+}
+#download .bottom .content .download-card .download .download-icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#download .list-view-box {
+    /* display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1; */
+    display: none;
+}
+#download .list-view-box.active {
+    display: block;
+}
+#download .list-view-box .content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e1e1e1;
+}
+
+#download .list-view-box .content .first-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+#download .list-view-box .content .first-row h2 {
+    color: #232323;
+    font-size: 16px;
+    font-weight: bold;
+}
+#download .list-view-box .content .first-row .right {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+#download .list-view-box .content .first-row .right .date {
+    color: #232323;
+    font-size: 16px;
+    font-weight: bold;
+}
+#download .list-view-box .content .first-row .right .download {
+    color: #232323;
+    font-size: 16px;
+    min-width: 120px;
+    text-align: center;
+    font-weight: bold;
+}
+#download .list-view-box .content .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 16px;
+}
+#download .list-view-box .content .row:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+#download .list-view-box .content .row .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#download .list-view-box .content .row .left .pdf-icon {
+    width: 18px;
+}
+#download .list-view-box .content .row .left h2 {
+    font-size: 16px;
+    color: #232323;
+}
+#download .list-view-box .content .row .right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+#download .list-view-box .content .row .right .date {
+    color: #828282;
+    font-size: 16px;
+}
+#download .list-view-box .content .row .right .download {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+#download .pagination {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+#download .pagination .left-arrow-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+#download .pagination .left-arrow-box .icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+}
+
+#download .pagination .left-arrow-box span {
+    color: #232323;
+    opacity: 0.5;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: "poppinsmedium";
+}
+
+#download .pagination .middle {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#download .pagination .middle .page-number {
+    border-radius: 6px;
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+    background: #fdfdfd;
+    color: #032a58;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "poppinsmedium";
+}
+
+#download .pagination .middle .page-number:first-child {
+    border: 1px solid #032a58;
+}
+
+#download .pagination .right-arrow-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+#download .pagination .right-arrow-box .icon {
+    width: 16px;
+    height: 16px;
+}
+
+#download .pagination .right-arrow-box span {
+    color: #232323;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: "poppinsmedium";
+}
+
+#magazine {
+    padding-bottom: 80px;
+    position: relative;
+}
+#magazine h1 {
+    font-size: 26px;
+    color: #232323;
+    margin-bottom: 30px;
+}
+#magazine h1 span {
+    color: #054289;
+}
+
+#magazine .all-magazines .slick-list .slick-track {
+    padding-bottom: 20px;
+}
+
+#magazine .all-magazines .card {
+    border: 1px solid #e1e1e1;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 12px;
+    box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.06);
+}
+#magazine .all-magazines .card .image {
+    border-radius: 10px;
+    overflow: hidden;
+}
+#magazine .all-magazines .card .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+#magazine .all-magazines .card .left {
+    
+}
+#magazine .all-magazines .card .left .name {
+    color: #232323;
+    font-size: 16px;
+}
+#magazine .all-magazines .card .left .date {
+    font-size: 14px;
+    color: #828282;
+}
+#magazine .all-magazines .card .download-icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+#magazine .button-box {
+    display: flex;
+    justify-content: space-between;
+    width: 87%;
+    margin: 0 auto;
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    left: 0;
+    right: 0;
+}
+
+#magazine .button-box button {
+    background-color: #fff;
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    /* box-shadow: hsba(0, 0%, 0%, 0.06); */
+    box-shadow: 7px 11px 30px 0px rgba(0, 0, 0, 0.06);
+}
+#magazine .button-box button.slick-prev {
+    /* opacity: 0.5; */
+}
+
+/* // 1280PX  // */
+@media all and (max-width: 1280px) {
+    #spotlight .left p {
+        width: 40%;
+    }
+    #spotlight .left h1 {
+        font-size: 50px;
+    }
+    #download {
+        padding: 70px 0;
+    }
+    #magazine {
+        padding-bottom: 70px;
+    }
+}
+
+@media all and (max-width: 1180px) {
+    #download .bottom .content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media all and (max-width: 1080px) {
+    #magazine .button-box button {
+        padding: 7px;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* // 980PX  // */
+@media all and (max-width: 980px) {
+    #spotlight .left h1 {
+        text-align: center;
+        font-size: 45px;
+    }
+    #spotlight .left p {
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    #download {
+        padding: 60px 0;
+    }
+    #download .bottom .content {
+        gap: 20px;
+    }
+    #download .bottom .content .download-card {
+        padding: 15px;
+    }
+
+    #download .bottom .content .download-card .name .icon {
+        width: 15px;
+    }
+
+    #download .top {
+        margin-bottom: 20px;
+    }
+
+    #download .top h1 {
+        font-size: 24px;
+    }
+
+    #download .top .view-type {
+        gap: 15px;
+    }
+
+    #download .top .view-type .card-icon {
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+    }
+    #download .top .view-type .card-icon.active {
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+    }
+    #download .top .view-type .list-icon {
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+    }
+    #download .top .view-type .list-icon.active {
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+    }
+    #download .bottom .content .download-card .download .download-icon {
+        width: 15px;
+    }
+
+    #magazine {
+        padding-bottom: 60px;
+    }
+    #magazine h1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    #magazine .all-magazines .card {
+        padding: 15px;
+        margin: 0 8px;
+    }
+    #magazine .all-magazines .card .left .name {
+        font-size: 15px;
+    }
+    #magazine .all-magazines .card .download-icon {
+        width: 15px;
+        height: 15px;
+    }
+    #magazine .button-box button {
+        padding: 6px;
+        width: 27px;
+        height: 27px;
+    }
+}
+
+/* // 768PX  // */
+@media all and (max-width: 768px) {
+    #spotlight .left p {
+        width: 60%;
+    }
+    #spotlight .left h1 {
+        font-size: 40px;
+    }
+
+    #download {
+        padding: 50px 0;
+    }
+    #download .bottom .content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #magazine {
+        padding-bottom: 50px;
+    }
+    #magazine .all-magazines .card .left .name {
+        font-size: 14px;
+    }
+
+    #download .list-view-box .content .first-row {
+        padding: 13px 16px;
+    }
+    #download .list-view-box .content .row {
+        padding: 13px 16px;
+    }
+    #download .list-view-box .content .first-row .right .download {
+        min-width: 80px;
+        font-size: 15px;
+    }
+    #download .list-view-box .content .first-row .right .date {
+        font-size: 15px;
+    }
+    #download .list-view-box .content .first-row h2 {
+        font-size: 15px;
+    }
+    #download .list-view-box .content .row .right .download {
+        min-width: 80px;
+        width: 14px;
+        height: 14px;
+    }
+    #download .list-view-box .content .row .left h2 {
+        font-size: 14px;
+    }
+    #download .list-view-box .content .row .left .pdf-icon {
+        width: 15px;
+    }
+    #download .list-view-box .content .row .right .date {
+        font-size: 14px;
+    }
+}
+
+/* // 680PX  // */
+@media all and (max-width: 680px) {
+    #spotlight .left p {
+        width: 70%;
+    }
+    #spotlight .left h1 {
+        font-size: 35px;
+    }
+    #spotlight {
+        padding: 150px 0;
+    }
+    #magazine h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+}
+
+/* // 640PX  // */
+@media all and (max-width: 640px) {
+    #spotlight .left p {
+        width: 80%;
+    }
+    #spotlight .left h1 {
+        font-size: 30px;
+    }
+    #download {
+        padding: 40px 0;
+    }
+
+    #download .pagination {
+        gap: 18px;
+    }
+    #download .pagination .left-arrow-box {
+        gap: 15px;
+    }
+    #download .pagination .right-arrow-box {
+        gap: 15px;
+    }
+    #download .pagination .middle {
+        gap: 15px;
+    }
+    #download .top h1 {
+        font-size: 22px;
+    }
+
+    #magazine {
+        padding-bottom: 40px;
+    }
+}
+
+@media all and (max-width: 540px) {
+    #download .pagination {
+        gap: 18px;
+    }
+    #download .pagination .left-arrow-box span {
+        display: none;
+    }
+    #download .pagination .right-arrow-box span {
+        display: none;
+    }
+    #download .pagination .middle {
+        gap: 15px;
+    }
+
+    #download .bottom .content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #download .top h1 {
+        font-size: 20px;
+    }
+    #magazine h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    #magazine .button-box {
+        top: 41%;
+    }
+    #magazine .button-box button {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* // 480PX  // */
+@media all and (max-width: 480px) {
+    .wrapper-secondary {
+        width: 90%;
+    }
+    #spotlight .left p {
+        width: 90%;
+        font-size: 14px;
+    }
+    #spotlight .left h1 {
+        font-size: 25px;
+    }
+    #spotlight .left {
+        gap: 12px;
+    }
+    #spotlight {
+        padding: 80px 0;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+    }
+
+    #download .pagination .middle {
+        gap: 10px;
+    }
+    #download .pagination {
+        gap: 12px;
+    }
+    #download .pagination .middle .page-number {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    #magazine .button-box {
+        width: 93%;
+    }
+
+    #download .list-view-box .content .row .right .download {
+        min-width: unset;
+    }
+    #download .list-view-box .content .first-row .right .download {
+        display: none;
+    }
+    #download .list-view-box .content .row .right {
+        gap: 15px;
+    }
+    #download .list-view-box .content .first-row .right .date {
+        min-width: 120px;
+        text-align: center;
+    }
+    #download .list-view-box .content .row .left h2 {
+        width: 45%;
+        height: max-content;
+        line-height: 17px;
+    }
+}
+
+@media all and (max-width: 380px) {
+    #download .list-view-box .content .row {
+        padding: 13px 10px;
+    }
+    #download .list-view-box .content .first-row {
+        padding: 10px;
+    }
+    #download .list-view-box .content .row .right {
+        gap: 10px;
+    }
+}

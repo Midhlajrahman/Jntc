@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load resources_paginator_tags %}
+{% block content %}
+{% include '../../includes/header.html' %}
+        
+        <!-- #photos -->
+        <section id="photos">
+            <div class="wrapper">
+                <h2>All <span class="blue_color">Albums</span></h2>
+                <div class="image-gallery">
+                    {% for event in events %}
+                    <div class="major" gallery-index="{{event.id}}">
+                        <div class="image-item">
+                            {% for gallery in event.gallery.all|slice:":1" %}
+                            <img src="{{gallery.image.url}}" alt="Image" />
+                            {% endfor %}
+                        </div>
+                        <h5>{{event.title|capfirst}}</h5>
+                        <h6>{{event.gallery.all|length}} items</h6>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% comment %} Pagination {% endcomment %}
+                {% if events.has_other_pages %}
+                <ul class="listpage-box">
+                    {% if events.has_previous %}
+                    <li class="page-box">
+                        <span> &#8249;</span>
+                        <a href="?page={{events.previous_page_number}}" class="pagi"> Previous</a>
+                    </li>
+                    {% else %}
+                    <li class="page-box disabled">
+                        <span> &#8249;</span>
+                        <a class="pagi"> Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% get_elided_page_range events.paginator events.number as page_range %}
+                    {% for count in page_range %}
+                    {% if events.number == count %}
+                    <li class="page-box  active"><a href="?page={{count}}" class="pagi">{{count}}</a></li>
+                    {% else %}
+                    <li class="page-box"><a href="?page={{count}}" class="pagi">{{count}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if events.has_next %}
+                    <li class="page-box">
+                        <a href="?page={{events.next_page_number}}" class="pagi">Next</a>
+                        <span class="right">&#8250;</span>
+                    </li>
+                    {% else %}
+                    <li class="page-box disabled">
+                        <a  class="pagi">Next</a>
+                        <span class="right">&#8250;</span>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div> <!-- Wrapper > End -->
+        </section>
+    
+        {% include "../../includes/footer.html" %}
+        {% endblock content %}

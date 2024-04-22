@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/programs/academic-calendar.css' %}" />
+{% endblock stylesheets %}
+
+{% block content %}
+{% include '../includes/header.html' %}
+
+        <!-- spotlight >  -->
+        <section id="spotlight" style="background: linear-gradient(90deg, #032a58 38.86%, rgba(3, 42, 88, 0) 100%),
+        url({{spotlight.image.url}});background-repeat:no-repeat;background-size:cover;">
+            <section class="wrapper-secondary">
+                <div class="left">
+                    <h1>{{spotlight.title|capfirst}}</h1>
+                    <p>{{spotlight.sub_title}}</p>
+                </div>
+            </section>
+        </section>
+        <!-- spotlight > End -->
+
+        <section id="academic-calendar">
+            <section class="wrapper-secondary">
+                <div class="top">
+                    <h2>Year Wise</h2>
+                    <div class="years">
+                        {% for instance in calender %}
+                        <button class="year">{{instance.batch}}</button>
+                        <span class="line"></span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- function inside slider.js file , remove commets after integration -->
+                    <!-- first section, will display by default -->
+                    {% for instance in calender %}
+                    <div class="result top-card">
+                        <div class="content">
+                            {% for year in instance.years.all %}
+                            <div class="result-card">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                        alt="pdf"
+                                    />
+                                </div>
+                                <span>{{year.year}}</span>
+                                <a
+                                    class="icon"
+                                    download
+                                    href="{{year.file.url}}"
+                                >
+                                    <img
+                                        src="{% static 'assets/images/student-zone/download-icon.svg' %}"
+                                        alt="download"
+                                    />
+                                </a>
+                            </div>
+                            {% endfor %} 
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+        
+                <!-- first bottom section will display by default -->
+                {% for instance in calender %}
+                <div class="bottom bottom-card">
+                    <h2>Semester Wise</h2>
+                    <div class="result">
+                        {% for semester in instance.semesters.all %}
+                        <div class="result-card">
+                            <div class="icon">
+                                <img
+                                    src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                    alt="pdf"
+                                />
+                            </div>
+                            <span>{{semester.semester}}</span>
+                            <a
+                                class="icon"
+                                download
+                                href="{{semester.file.url}}"
+                            >
+                                <img
+                                    src="{% static 'assets/images/student-zone/download-icon.svg' %}"
+                                    alt="download"
+                                />
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- second bottom section. only show ehrn next year button is selected -->
+                <div class="bottom-card"></div>
+            </section>
+        </section>
+        {% include '../includes/footer.html' %}
+        {% endblock content %}

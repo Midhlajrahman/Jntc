@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../../includes/header.html' %}
+
+	<section id="complaints">
+		<div class="top">
+			<h3>Report a complaint to IQAC</h3>
+			<p>Report a complaint for feedback, grievances, and effective resolution.</p>
+		</div>
+		<div class="main-container">
+			<div class="form_wrap">
+				<div class="form_3 data_info">
+					<form class="report_form" id="complaint_form">
+						{% csrf_token %}
+						<div class="date-picker">
+							<p id="calender"></p>
+						</div>
+						<div class="form_container">
+							{% for feild in form %}
+							{% if feild.label != "Complaint" %}
+							<div class="input_wrap">
+								<label for="{{feild.id_for_label}}">{{feild.label}}<span class="star">*</span></label>
+								{{feild}}
+								<p class="error error_message">{{ feild.error }}</p>
+							</div>
+							{% endif %}
+							{% endfor %}
+							<div class="input_wrap adress">
+								<div class="label"><label for="complaint">Complaint<span class="star">*</span></label></div>
+								<textarea class="input" rows="3" cols="61" id="complaint" name="complaint" placeholder="Enter here" required>{{ form.complaint.value|default_if_none:"" }}</textarea>
+								<p class="error error_message">{{ feild.error }}</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="btns_wrap">
+				<div class="common_btns form_3_btns">
+					<button class="reset_report clear" type="button">Clear form</button>
+					<div>
+						<button id="iqac-submit" type="button" class="btn_done_two">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal_wrapper_two">
+			<div class="shadow_two"></div>
+			<div class="success_wrap">
+				<div class="modal_icon"><i class="fa fa-check"></i></div>
+				<h3>Success!</h3>
+				<p>Your complaint successfully sent</p>
+				<button onclick="window.location.href='{% url 'iqac:iqac_page' %}';" type="button" class="btn_done_two">Done</button>
+			</div>
+		</div>
+		
+	</section>
+
+	{% include "../../includes/footer.html" %}
+	{% endblock content %}

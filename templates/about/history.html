@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../includes/header.html' %}
+    <section id="aboutus"
+    class="about-detail"
+    style="background: linear-gradient(90deg, #032A58 43.86%, rgba(3, 42, 88, 0) 100%), url('{{spotlight.image.url}}'); background-size:cover; background-repeat:no-repeat;">
+    <div class="wrapper">
+        <div class="title">
+            <h2>{{history.title|capfirst}}</h2>
+            <h4>{{history.sub_title}}</h4>
+        </div>
+    </div>
+    </section>
+
+    <!-- History content  -->
+    <section id="content-history">
+        <div class="wrapper">
+            <p>
+                {{history.description|slice:":410"}}
+                <br>
+                <br>
+                {{history.description|slice:"410:810"}}
+                <br>
+                <br>
+                {{history.description|slice:"810:1210"}}
+                <br>
+                <br>
+
+                {{history.description|slice:"1210:1610"}}
+                <br>
+
+                {{history.description|slice:"1610:2500"}}
+                <br>
+                <br>
+
+                {{history.description|slice:"3000:"}}
+            </p>
+        </div>
+    </section>
+    
+    {% include "../includes/footer.html" %}
+    {% endblock content %}

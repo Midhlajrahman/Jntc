@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/student-zone/year-and-semester-wise-results.css' %}" />
+{% endblock stylesheets %}
+
+{% block content %}
+{% include '../includes/header.html' %}
+        <section id="all-result">
+            <section class="wrapper-secondary">
+                <h1><span>B.Ed.</span> Results Status</h1>
+                <div class="top">
+                    <h2>Year Wise</h2>
+                    <div class="years">
+                        {% for instance in results %}
+                        <button class="year">{{instance.batch}}</button>
+                        <span class="line"></span>
+                        {% endfor %}
+                    </div>
+                    {% for instance in results %}
+                    <div class="result top-card">
+                        <div class="content">
+                            {% for year in instance.years.all %}
+                            <div class="result-card">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                        alt="pdf"
+                                    />
+                                </div>
+                                <span>{{year.year}}</span>
+                                {% if year.file %}
+                                <a
+                                    class="icon"
+                                    download
+                                    href="{{year.file.url}}"
+                                >
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% endfor %} 
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% for instance in results %}
+                <div class="bottom bottom-card">
+                    <h2>Semester Wise</h2>
+                    <div class="result">
+                        {% for semester in instance.semesters.all %}
+                        {% if semester.file %}
+                        <a
+                            class="icon"
+                            download
+                            href="{{semester.file.url}}"
+                        >
+                        <div class="result-card">
+                            <div class="icon">
+                                <img
+                                    src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                    alt="pdf"
+                                />
+                            </div>
+                            <span>{{semester.semester}}</span>
+                        </div>
+                    </a>
+                    {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- second bottom section. only show ehrn next year button is selected -->
+                <div class="bottom-card"></div>
+            </section>
+        </section>
+
+        {% include '../includes/footer.html' %}
+        {% endblock content %}

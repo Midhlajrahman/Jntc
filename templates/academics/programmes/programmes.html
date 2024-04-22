@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../../includes/header.html' %}
+
+        <!-- #cources -->
+        <section id="cources">
+            <div class="wrapper">
+                <h3 class="grey-content">Programmes</h3>
+                <h2><span class="blue_color">Programmes</span> offered by JNTC</h2>
+                <div class="cource">
+                    {% for program in programs %}
+                    <div class="{% cycle 'b-ed' 'ignou' %}">
+                        <div class="image-box">
+                            {% if program.image %}
+                            <img
+                                src="{{program.image.url}}"
+                                alt="Image"
+                            />
+                            {% endif %}
+                        </div>
+                        <h4>{{program.tag}}</h4>
+                        <p>
+                           {{program.sub_title}}
+                        </p>
+                        <hr class="line" />
+                        <a
+                            class="admission"
+                            href="{% url 'academic:programmes_single_page' uuid=program.id %}"
+                        >
+                            <span class="blue_color">Learn More</span>
+                            <span
+                                ><img
+                                    src="{% static 'assets/icons/arrow_forward.svg' %}"
+                                    alt="Image"
+                            /></span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- #cources > End -->
+
+        {% include '../../includes/footer.html' %}
+        {% endblock content %}

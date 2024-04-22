@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/programs/ignou.css' %}" />
+{% endblock  %}
+{% block content %}
+{% include '../../includes/header.html' %}
+        <!-- #banner-container -->
+        {% if program %}
+        <section id="banner-container">
+            <section class="wrapper-secondary">
+                <div class="banner">
+                    <div class="content">
+                        <h3>{{program.tag}}</h3>
+                        <h1>{{program.title|capfirst}}</h1>
+                        <p>
+                            {{program.sub_title}}
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </section>
+        {% endif %}
+        <!-- #banner-container > End -->
+
+        <!-- #overview >  -->
+        {% if program.about %}
+        {% for about in program.about.all|slice:":1"  %}
+        <section id="overview">
+            <section class="wrapper-secondary">
+                <section class="content">
+                    <div class="left">
+                        <div class="rectangle-image">
+                            {% for gallery in about.gallery.all|slice:":1" %}
+                            {% if gallery.image %}
+                            <img
+                                src="{{gallery.image.url}}"
+                                alt="overview-image"
+                            />
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            {% for gallery in about.gallery.all|slice:"1:" %}
+                            <div class="square-image">
+                                {% if gallery.image %}
+                                <img
+                                    src="{{gallery.image.url}}"
+                                    alt="overview-image"
+                                />
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="right">
+                        <h3>{{about.tag}}</h3>
+                        <h1>{{ about.title|capfirst|highlight_word:about.highlight_word|safe }}</h1>
+                        <p>
+                            {{about.description|truncatewords:55}}
+                        </p>
+                    </div>
+                </section>
+            </section>
+        </section>
+        {% endfor %}
+        {% endif %}
+        <!-- #overview > End -->
+
+        <!-- #objectives >  -->
+        {% if program.objective %}
+        {% for objective in program.objective.all|slice:":1" %}
+        <section id="objectives">
+            <section class="wrapper-secondary">
+                <div class="top">
+                    <h3>{{objective.tag}}</h3>
+                    <h1>{{objective.title|capfirst|highlight_word:objective.highlight_word|safe}}</h1>
+                </div>
+                <div class="bottom">
+                    <div class="left">
+                        <div class="image">
+                            {% if objective.image %}
+                            <img
+                                src="{{objective.image.url}}"
+                                alt="objectives"
+                            />
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            {% for object in objective.point.all|slice:":4" %}
+                            <li>
+                                <div class="dot">
+                                    <img
+                                        src="{% static 'assets/images/ignou/blue-dot.svg' %}"
+                                        alt="dot"
+                                    />
+                                </div>
+                                <div class="text">
+                                    <span>0{{forloop.counter}}</span>
+                                    <p>{{object.title|capfirst}}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+        {% endfor %}
+        {% endif %}
+        <!-- #objectives > End -->
+
+        <!-- #gateway >  -->
+        {% if program.gateway %}
+        {% for gateway in program.gateway.all|slice:":1" %}
+        <section id="gateway">
+            <section class="wrapper-secondary">
+                <h3>{{gateway.tag}}</h3>
+                <h1>{{gateway.title|capfirst}}</h1>
+                <ul>
+                    {% for object in gateway.object.all|slice:":3" %}
+                    <li>
+                        <div class="top">
+                            {% if object.image %}
+                            <img
+                                src="{{object.image.url}}"
+                                alt="gateway"
+                            />
+                            {% endif %}
+                        </div>
+                        <div class="bottom">
+                            <h4>{{object.title|capfirst}}</h4>
+                            <p>
+                                {{object.description|truncatewords:30}}
+                            </p>
+    
+                            <a
+                                href="{{object.url|default_if_none:"#"}}"
+                                {% if object.url %}
+                                target="_blank"
+                                {% endif %}
+                                rel="noreferrer"
+                                class="button-box"
+                            >
+                                <p>Read more</p>
+                                <div class="arrow">
+                                    <img
+                                        src="{% static 'assets/images/ignou/right-arrow.svg' %}"
+                                        alt="right-arrow"
+                                    />
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </section>
+        {% endfor %}
+        {% endif %}
+        <!-- #gateway > End -->
+
+        <!-- #course >  -->
+        {% if program.information %}
+        {% for information in program.information.all|slice:":1" %}
+        <section id="course">
+            <section class="wrapper-secondary">
+                <section class="content">
+                    <div class="left">
+                        <h3>{{information.tag}}</h3>
+                        <h1>
+                            {{information.title|capfirst|highlight_word:information.highlight_word|safe}}
+                        </h1>
+                        <p>
+                            {{information.description|truncatewords:55}}
+                        </p>
+                    </div>
+                    <div class="right">
+                        <div class="tooltip">{{information.sub_title}}</div>
+                        <div class="image">
+                            {% if information.image %}
+                            <img
+                                src="{{information.image.url}}"
+                                alt="course"
+                            />
+                            {% endif %}
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+        {% endfor %}
+        {% endif %}
+        <!-- #course > End -->
+        <!-- #download > -->
+        {% if program.data %}
+        {% for data in program.data.all|slice:":1" %}
+        <section id="download">
+            <section class="content">
+                <h3>{{data.tag}}</h3>
+                <h2>{{data.title|capfirst}}</h2>
+                <p class="first">{{data.sub_title}}</p>
+                <div class="download">
+                    <div class="left">
+                        <div class="icon">
+                            <img
+                                src="{% static 'assets/images/b-ed/pdf.svg' %}"
+                                alt="pdf"
+                            />
+                        </div>
+                        <p class="pdf-name">{{data.file_name}}</p>
+                    </div>
+                    <div class="right">
+                        <div class="icon">
+                            {% if data.file %}
+                            <a
+                                href="{{data.file.url}}"
+                                download=""
+                            >
+                            {% endif %}
+                                <img
+                                    src="{% static 'assets/images//b-ed/download.svg' %}"
+                                    alt=""
+                            /></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        {% endfor %}
+        {% endif %}
+        <!-- #download > End -->
+
+        {% include '../../includes/footer.html' %}
+        {% endblock content %}

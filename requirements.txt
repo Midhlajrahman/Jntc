@@ -1,0 +1,13 @@
+Django==4.2.9
+django-embed-video==1.4.8
+django-versatileimagefield==3.0
+idna==3.4
+Pillow==9.5.0
+psycopg2-binary==2.9.6
+python-decouple==3.8
+python-magic==0.4.27
+requests==2.29.0
+sqlparse==0.4.4
+urllib3==1.26.15
+
+-r requirements-dev.txt

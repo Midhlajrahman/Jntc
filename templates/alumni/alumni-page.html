@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+{% include '../includes/header.html' %}
+        
+        <!-- #alumni-page -->
+        <section id="alumni-spotlight" style="background: linear-gradient(90deg, #032A58 43.86%, rgba(3, 42, 88, 0) 100%), url('{{alumni_spotlights.image.url}}'); background-size:cover; background-repeat:no-repeat;">
+            <div class="wrapper">
+                <div class="title">
+                    <h2>{{alumni_spotlights.title|capfirst}}</h2>
+                    <h4>{{alumni_spotlights.sub_title}}</h4>
+                </div>
+            </div><!-- wrapper > End -->
+        </section> <!-- alumini-page > End -->
+        
+        <!-- #alumni-network -->
+        
+        <section id="alumni-network">
+            <div class="wrapper">
+                <div class="content">
+                    <div class="left">
+                        <div class="first-image">
+                            <img src="{%  static 'assets/images/Frame.svg' %}" alt="Image" />
+                        </div>
+                        <div class="img-container">
+                            <img src="{{about.image.url}}" alt="Image" />
+                        </div>
+                    </div>
+                    <div class="right">
+                        {% if about.title %}
+                        <h2>{{about.title|capfirst|highlight_word:about.highlight_word|safe}}</h2>
+                        {% endif %}
+                        <p>{{about.description|truncatewords:45}}</p>
+                        <a href="{% url 'alumni:register' %}" class="btn-primary register">
+                            Register Now
+                        </a>
+                        <div class="second-image">
+                            <img src="{%  static 'assets/images/Frame.svg' %}" alt="Image" />
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- wrapper > End -->
+        </section><!-- #alumni-network > End -->
+        
+        <!-- #alumni-activities -->
+        
+        <section id="alumni-activities">
+            <div class="wrapper">
+                <div class="top">
+                    <h3 class="grey-content">Alumni Activities</h3>
+                    <h2>Stay <span class="blue_color">connected</span> with alumni activities</h2>
+                </div>
+                <div class="bottom">
+                    <ul class="cards">
+                        {% for activity in alumni_activities %}
+                        <li class="card">
+                            <div class="slider imager_box">
+                                {% for gallery in activity.gallery.all %}
+                                <div class="img-container">
+                                    <img src="{{gallery.image.url}}" alt="Image" />
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div onclick="window.location.href='{% url 'alumni:alumni_activity' uuid=activity.id %}'" class="details">
+                                    <span>{{activity.date|date:"d M Y"}}</span>
+                                    <h4 class="sub-title">{{activity.title|capfirst}}</h4>
+                                    <p>{{activity.description|truncatewords:20}}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="button">
+                    <a href="{% url 'alumni:alumni_activities' %}" class="btn-primary view">
+                        View All <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div> <!-- wrapper > End -->
+        </section> <!-- #alumni-activities > End -->
+        
+        <!-- #alumni-team -->
+        
+        <section id="alumni-team">
+            <div class="wrapper">
+                <div class="top">
+                    <h3 class="grey-content">Alumni Team</h3>
+                    <h2>Meet the <span class="blue_color">Alumni team</span></h2>
+                </div>
+                <ul class="all-team">
+                    {% for member in alumni_teams %}
+                    <li>
+                        <div class="img-container">
+                            <img src="{{member.image.url}}" alt="Profile" />
+                        </div>
+                        <div class="details">
+                            <h4>{{member.name}}</h4>
+                            <span>{{member.designation}}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="alumns">
+                    <div>
+                    <h3>Student Alumnus</h3>
+                        <ul class="details" >
+                            {% for student in students %}
+                            <li>
+                                <h5 class="name">{{student.name}}</h5>
+                                <h5 class="batch">{{student.batch}}</h5>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="facualty">Faculty Alumnus</h3>
+                        <ul class="details" >
+                            {% for member in faculties %}
+                            <li>
+                                <h5 class="name">{{member.name}}</h5>
+                                <h5 class="batch">{{member.designation}}</h5>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        {% include "../includes/footer.html" %}
+        {% endblock content %}

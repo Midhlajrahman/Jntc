@@ -1,0 +1,581 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    background: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.wrapper-secondary {
+    width: 85%;
+    margin: 0 auto;
+}
+
+#spotlight {
+    padding: 250px 0 200px;
+    background: linear-gradient(90deg, #032a58 43.86%, rgba(3, 42, 88, 0) 100%),
+        url("../../images/news-event/spotlight-bg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#spotlight .left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#spotlight .left h1 {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 55px;
+}
+
+#spotlight .left p {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    width: 30%;
+}
+
+#news {
+    padding: 100px 0;
+}
+
+#news h3 {
+    color: #232323;
+    opacity: 0.5;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#news h1 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    color: #232323;
+    margin-bottom: 40px;
+}
+#news h1 span {
+    color: #054289;
+}
+
+#news .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+#news .container .card {
+    width: 32%;
+    border-radius: 24px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+#news .container .card .image.card-slider {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+#news .container .card:hover .image.card-slider {
+    transform: scale(1.05, 1.05);
+    transform-origin: center center;
+    transition: all 0.5s ease-in-out;
+    cursor: default;
+}
+
+#news .container .card .image.card-slider img {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#news .container .card:hover .button-box {
+    opacity: 1;
+}
+
+#news .container .card .button-box {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 10;
+    top: 30%;
+    width: 90%;
+    padding: 0 15px;
+}
+#news .container .card .slick-dots {
+    opacity: 0;
+}
+#news .container .card:hover .slick-dots {
+    opacity: 1;
+}
+#news .container .card .bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+#news .container .card .bottom span {
+    letter-spacing: 0.25px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #828282;
+    margin-bottom: 10px;
+}
+#news .container .card .bottom h4 {
+    color: #232323;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+#news .container .card .bottom p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #828282;
+    line-height: 24px;
+}
+
+#news .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+
+    background-color: #032a58;
+    padding: 16px 24px;
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+#news .button span {
+    color: #fff;
+    font-size: 16px;
+}
+#news .button .icon {
+    width: 15px;
+    height: 15px;
+}
+#news .button:hover {
+    opacity: 0.8;
+    transition: all 0.4s ease-in-out;
+}
+
+/* //event */
+#event {
+    padding: 100px 0;
+}
+
+#event h3 {
+    color: #232323;
+    opacity: 0.5;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#event h1 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    color: #232323;
+    margin-bottom: 40px;
+}
+#event h1 span {
+    color: #054289;
+}
+
+#event .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+#event .container .card {
+    width: 32%;
+    border-radius: 24px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+#event .container .card .image.card-slider {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+#event .container .card:hover .image.card-slider {
+    transform: scale(1.05, 1.05);
+    transform-origin: center center;
+    transition: all 0.5s ease-in-out;
+    cursor: default;
+}
+
+#event .container .card .image.card-slider img {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#event .container .card:hover .button-box {
+    opacity: 1;
+}
+
+#event .container .card .button-box {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 10;
+    top: 30%;
+    width: 90%;
+    padding: 0 15px;
+}
+#event .container .card .slick-dots {
+    opacity: 0;
+}
+#event .container .card:hover .slick-dots {
+    opacity: 1;
+}
+#event .container .card .bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+#event .container .card .bottom span {
+    letter-spacing: 0.25px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #828282;
+    margin-bottom: 10px;
+}
+#event .container .card .bottom h4 {
+    color: #232323;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+#event .container .card .bottom p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #828282;
+    line-height: 24px;
+}
+
+#event .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+
+    background-color: #032a58;
+    padding: 16px 24px;
+    width: max-content;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+#event .button span {
+    color: #fff;
+    font-size: 16px;
+}
+#event .button .icon {
+    width: 15px;
+    height: 15px;
+}
+#event .button:hover {
+    opacity: 0.8;
+    transition: all 0.4s ease-in-out;
+}
+
+/* //RESPONSIVE */
+
+/* // 1470PX  // */
+@media all and (max-width: 1470px) {
+    #news .container {
+        gap: 15px;
+    }
+
+    #event .container {
+        gap: 15px;
+    }
+}
+
+/* // 1280PX  // */
+@media all and (max-width: 1280px) {
+    #spotlight .left p {
+        width: 40%;
+    }
+    #spotlight .left h1 {
+        font-size: 50px;
+    }
+
+    #news {
+        padding: 80px 0;
+    }
+    #news .container .card .bottom h4 {
+        font-size: 18px;
+    }
+    #news .container .card .bottom p {
+        font-size: 15px;
+    }
+    #news h1 {
+        font-size: 30px;
+    }
+
+    #event {
+        padding: 80px 0;
+    }
+    #event .container .card .bottom h4 {
+        font-size: 18px;
+    }
+    #event .container .card .bottom p {
+        font-size: 15px;
+    }
+    #event h1 {
+        font-size: 30px;
+    }
+}
+
+@media all and (max-width: 1080px) {
+    #news .container {
+        justify-content: center;
+    }
+    #news .container .card {
+        width: 48%;
+    }
+    #news h1 {
+        font-size: 28px;
+    }
+
+    #event .container {
+        justify-content: center;
+    }
+    #event .container .card {
+        width: 48%;
+    }
+    #event h1 {
+        font-size: 28px;
+    }
+}
+
+/* // 980PX  // */
+@media all and (max-width: 980px) {
+    #spotlight .left h1 {
+        text-align: center;
+        font-size: 45px;
+    }
+    #spotlight .left p {
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #news {
+        padding: 70px 0;
+    }
+    #news h1 {
+        margin-bottom: 30px;
+        font-size: 26px;
+    }
+    #news .container .card .bottom p {
+        font-size: 14px;
+    }
+    #news .container .card .slick-dots {
+        left: 50%;
+        bottom: 5px;
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+    #news .container .card .button-box {
+        opacity: 1;
+        top: 28%;
+    }
+    #news .container .card .bottom h4 {
+        font-size: 17px;
+    }
+
+    #event {
+        padding: 70px 0;
+    }
+    #event h1 {
+        margin-bottom: 30px;
+        font-size: 26px;
+    }
+    #event .container .card .bottom p {
+        font-size: 14px;
+    }
+    #event .container .card .slick-dots {
+        left: 50%;
+        bottom: 5px;
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+    #event .container .card .button-box {
+        opacity: 1;
+        top: 28%;
+    }
+    #event .container .card .bottom h4 {
+        font-size: 17px;
+    }
+}
+
+/* // 768PX  // */
+@media all and (max-width: 768px) {
+    #spotlight .left p {
+        width: 60%;
+    }
+    #spotlight .left h1 {
+        font-size: 40px;
+    }
+
+    #news h1 {
+        font-size: 24px;
+    }
+
+    #event h1 {
+        font-size: 24px;
+    }
+}
+
+/* // 680PX  // */
+@media all and (max-width: 680px) {
+    #spotlight .left p {
+        width: 70%;
+    }
+    #spotlight .left h1 {
+        font-size: 35px;
+    }
+    #spotlight {
+        padding: 150px 0;
+    }
+
+    #news .container .card {
+        width: 90%;
+    }
+    #news {
+        padding: 60px 0;
+    }
+
+    #event .container .card {
+        width: 90%;
+    }
+    #event {
+        padding: 60px 0;
+    }
+}
+
+/* // 640PX  // */
+@media all and (max-width: 640px) {
+    #spotlight .left p {
+        width: 80%;
+    }
+    #spotlight .left h1 {
+        font-size: 30px;
+    }
+
+    #news .container .card .bottom p {
+        line-height: 20px;
+    }
+    #news h1 {
+        font-size: 22px;
+    }
+
+    #event .container .card .bottom p {
+        line-height: 20px;
+    }
+    #event h1 {
+        font-size: 22px;
+    }
+}
+
+/* // 480PX  // */
+@media all and (max-width: 480px) {
+    #spotlight .left p {
+        width: 90%;
+        font-size: 14px;
+    }
+    #spotlight .left h1 {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+    #spotlight {
+        padding: 80px 0;
+    }
+
+    #news .container .card {
+        width: 100%;
+    }
+    #news h1 {
+        font-size: 20px;
+    }
+    #news .container .card .bottom h4 {
+        font-size: 16px;
+    }
+    #news {
+        padding: 50px 0;
+    }
+
+    #news .button span {
+        font-size: 14px;
+    }
+    #news .button .icon {
+        width: 12px;
+        height: 12px;
+    }
+
+    #event .container .card {
+        width: 100%;
+    }
+    #event h1 {
+        font-size: 20px;
+    }
+    #event .container .card .bottom h4 {
+        font-size: 16px;
+    }
+    #event {
+        padding: 50px 0;
+    }
+
+    #event .button span {
+        color: #fff;
+        font-size: 14px;
+    }
+    #event .button .icon {
+        width: 12px;
+        height: 12px;
+    }
+}

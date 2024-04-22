@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/news-and-events/news-and-events.css' %}" />
+{% endblock  %}
+{% block content %}
+        {% include '../includes/header.html' %}
+        <!-- spotlight >  -->
+    
+        <section id="spotlight" style="background: linear-gradient(90deg, #032A58 43.86%, rgba(3, 42, 88, 0) 100%), url('{{spotlight.image.url}}'); background-size:cover; background-repeat:no-repeat;">
+            <section class="wrapper-secondary">
+                <div class="left">
+                    <h1>{{spotlight.title|capfirst}}</h1>
+                    <p>{{spotlight.sub_title}}</p>
+                </div>
+            </section>
+        </section>
+        <!-- spotlight > End -->
+
+        <!-- news >  -->
+        <section id="news">
+            <section class="wrapper-secondary">
+                <h3>JNTC News</h3>
+                <h1>Stay <span>Updated</span> with the Latest News</h1>
+                <div class="container">
+                    {% for news in latest_news %}
+                    <div class="card">
+                        <div class="image card-slider">
+                            {% for gallery in news.gallery.all %}
+                            <div class="card-image">
+                                <img
+                                    src="{{gallery.image.url}}"
+                                    alt="news"
+                                />
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="button-box">
+                            <button
+                                class="slick-prev slick-arrow"
+                                aria-label="Previous"
+                                type="button"
+                            >
+                                <img
+                                    src="{% static 'assets/images/news-events/left-arrow.svg' %}"
+                                    alt="Icon"
+                                />
+                            </button>
+                            <button
+                                class="slick-next slick-arrow"
+                                aria-label="Next"
+                                type="button"
+                            >
+                                <img
+                                    src="{% static 'assets/images/news-events/right-arrow.svg' %}"
+                                    alt="Icon"
+                                />
+                            </button>
+                        </div>
+                        <div class="bottom">
+                            <span>{{news.date|date:"d M Y"}}</span>
+                            <h4>{{news.title|capfirst}}</h4>
+                            <p>
+                                {{news.description}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a
+                    class="button"
+                    href="{% url 'web:news_page' %}"
+                    ><span>More News</span>
+                    <span class="icon">
+                        <img
+                            src="{% static 'assets/images/news-events/right-arrow.svg' %}"
+                            alt="right-arrow"
+                        />
+                    </span>
+                </a>
+            </section>
+        </section>
+        <!-- news > End -->
+
+        <!-- events >  -->
+        <section id="event">
+            <section class="wrapper-secondary">
+                <h3>JNTC Events</h3>
+                <h1>Upcoming <span>events</span> at JNTC</h1>
+                <div class="container">
+                    {% for event in events %}
+                    <div class="card">
+                        <div class="image card-slider">
+                            {% for gallery in event.gallery.all %}
+                            <div class="card-image">
+                                <img
+                                    src="{{gallery.image.url}}"
+                                    alt="news"
+                                />
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="button-box">
+                            <button
+                                class="slick-prev slick-arrow"
+                                aria-label="Previous"
+                                type="button"
+                            >
+                                <img
+                                    src="{% static 'assets/images/news-events/left-arrow.svg' %}"
+                                    alt="Icon"
+                                />
+                            </button>
+                            <button
+                                class="slick-next slick-arrow"
+                                aria-label="Next"
+                                type="button"
+                            >
+                                <img
+                                    src="{% static 'assets/images/news-events/right-arrow.svg' %}"
+                                    alt="Icon"
+                                />
+                            </button>
+                        </div>
+                        <div class="bottom">
+                            <span>{{event.date|date:"d M Y"}}</span>
+                            <h4>{{event.title|capfirst}}</h4>
+                            <p>
+                                {{event.description}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a
+                    class="button"
+                    href="{% url 'web:events_page' %}"
+                    ><span> More Events</span>
+                    <span class="icon">
+                        <img
+                            src="{% static 'assets/images/news-events/right-arrow.svg' %}"
+                            alt="right-arrow"
+                        />
+                    </span>
+                </a>
+            </section>
+        </section>
+        <!-- events > end -->
+        {% include '../includes/footer.html' %}
+{% endblock content %}

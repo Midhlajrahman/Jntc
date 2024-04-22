@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include '../includes/header.html' %}
+
+    <section id="contactus"
+    style="background: linear-gradient(90deg, #032A58 43.86%, rgba(3, 42, 88, 0) 100%), url('{{spotlight.image.url}}'); background-size:cover; background-repeat:no-repeat;">
+        <div class="wrapper">
+            <div class="title">
+                <h2>{{spotlight.title|capfirst}}</h2>
+                <h4>{{spotlight.sub_title}}</h4>
+            </div>
+        </div>
+    </section> <!-- contact End -->
+
+    <!-- Get in touch > form -->
+    <section id="connect">
+        <div class="wrapper">
+            <div class="top">
+                <h3>Get in touch with us!</h3>
+                <h4>If you got any questions please do not Hesitate to send us a message.</h4>
+            </div>
+            <div class="contact">
+                <div class="touch-us">
+                    <div class="items">
+                        <div class="logo-container">
+                            <img src="{% static 'assets/icons/connect-phone.svg' %}" alt="phone">
+                        </div>
+                        <a href="tel:{{footer.contact_us_detail.phone_number}}">{{footer.contact_us_detail.phone_number}}</a>
+                    </div>
+                </div>
+                <div class="touch-us">
+                    <div class="items">
+                        <div class="logo-container" onclick="window.location.href='{{ footer.contact_us_detail.map_link }}'">
+                            <img src="{% static 'assets/icons/connect-location.svg' %}" alt="phone">
+                        </div>
+                        <a href="javascript:void(0);">{{footer.contact_us_detail.address}}</a>
+                    </div>
+                </div>
+                <div class="touch-us">
+                    <div class="items">
+                        <div class="logo-container">
+                            <img src="{% static 'assets/icons/connect-email.svg' %}" alt="phone">
+                        </div>
+                        <a href="javascript:void(0);">{{footer.contact_us_detail.email}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="forms">
+                <form id="contact_form">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        {% if field.name != 'message' %}
+                                <div class="input-container">
+                                    {{field}}
+                                    <p class="error"></p>
+                                </div>
+                        {% else %}
+                                <div class="input-container" style="width: 100%;">
+                                    {{field}}
+                                <p class="error"></p>
+                                </div>
+                        {% endif %}
+                    {% endfor %}                
+                
+                    <div class="bottom">
+                        <button id="contact-submit" class="btn-primary">
+                            Submit <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="modal_wrapper">
+                <div class="shadow"></div>
+                <div class="success_wrap">
+                    <div class="modal_icon"><i class="fa fa-check"></i></div>
+                    <h3>Success!</h3>
+                    <p>We will contact you soon</p>
+                    <button type="button" onclick="window.location.href='{% url 'contact:contact_us_page' %}'"
+                        class="btn_done">Done</button>
+                </div>
+            </div>
+     
+        </div>
+    </section>
+
+    {% include "../includes/footer.html" %}
+    {% endblock content %}

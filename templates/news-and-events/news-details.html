@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include "../includes/header.html" %}
+<!-- #activities-single-page -->
+<section id="activities_detail">
+    <div class="wrapper">
+        <a class="btn-primary back" href="{% url 'web:news_page' %}"><span><img
+                    src="{% static 'assets/icons/arrow_back.svg' %}" alt="Image" /></span> back</a>
+        <div class="album main-card">
+            <h3 class="grey-content">{{news.title|capfirst}}</h3>
+            <h2>"{{news.sub_title}}"</h2>
+            <div class="album_box">
+                <div class="item_list owl-carousel">
+                    {% for gallery in news.gallery.all %}
+                    <div class="slider-card">
+                        <div class="imager">
+                            <img src="{{gallery.image.url}}" alt="Image" />
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="activity_details">
+                <div class="date">
+                    <span><img src="{% static 'assets/icons/calender.svg' %}" alt="Image" /></span>
+                    <span class="date_info">{{news.date|date:"d M Y"}}</span>
+                </div>
+                <h4>Activity Details:</h4>
+                <p class="description_details">{{news.description}}</p>
+            </div>
+        </div>
+    </div>
+</section><!-- activities End -->
+
+{% include "../includes/footer.html" %}
+{% endblock content %}

@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+{% include '../../includes/header.html' %}
+    
+        <section id="facilities">
+            <div class="wrapper">
+                <div class="album">
+                    <h3 class="grey-content">Administrative block</h3>
+                    {% if administratives.title %}
+                    <h2>{{ administratives.title|capfirst|highlight_word:administratives.highlight_title|safe }}</h2>
+                    {% endif %}
+                    <p class="description">{{administratives.sub_title}}</p>
+                    <div class="album_box sliderr">
+                        <div class="item_list owl-carousel">
+                            {% for gallery in administratives.gallery.all %}
+                            <div class="slider-card">
+                                <div class="imager">
+                                    <img src="{{gallery.image.url}}" alt="Image" />
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="halls">
+            <div class="wrapper">
+                <div class="top">
+                    <h3 class="grey-content">Halls</h3>
+                    {% if halls.title %}
+                    <h2>{{ halls.title|capfirst|highlight_word:halls.highlight_title|safe }}</h2>
+                    {% endif %}
+                </div>
+                <div class="bottom">
+                    <ul class="cards">
+                        {% for hall in halls.halls.all|slice:":3" %}
+                        <li class="card">
+                            <div class="slider imager_box">
+                                {% for gallery in hall.gallery.all %}
+                                <div class="img-container">
+                                    <img src="{{gallery.image.url}}" alt="Image" />
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="details">
+                                <h4 class="sub-title">{{hall.title|capfirst}}</h4>
+                                <p>{{hall.description|truncatewords:30}}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div> <!-- wrapper > End -->
+        </section>
+        
+        <section id="library">
+            <div class="wrapper">
+                <div class="library-content">
+                    <div class="left">
+                        <div class="library-image">
+                            <img src="{{libraries.image.url}}" alt="Image">
+                        </div>
+                        <div class="contents">
+                            <div class="number">
+                                <span class="group"><img src="{% static 'assets/icons/Group.png' %}" alt="Image" /></span>
+                                <span><span class="count">7530+</span>Books</span>
+                            </div>
+                            <hr class="line" />
+                            <div class="number">
+                                <span class="group"><img src="{% static 'assets/icons/Group2.png' %}" alt="Image" /></span>
+                                <span><span class="count sky-blue">40+</span>Seats</span>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="right">
+                        <h3 class="grey-content">Library</h3>
+                        {% if libraries.title %}
+                        <h2>{{ libraries.title|capfirst|highlight_word:libraries.highlight_title|safe }}</h2>
+                        {% endif %}
+                        <p>{{libraries.description|truncatewords:55}}</p>
+                    </div>
+                </div>
+            </div> <!-- wrapper > End -->
+        </section>
+        
+        <section id="labs">
+            <div class="wrapper">
+                <div class="top">
+                    <h3 class="grey-content">Labs</h3>
+                    {% if labs.title %}
+                    <h2>{{ labs.title|capfirst|highlight_word:labs.highlight_title|safe }}</h2>
+                    {% endif %}
+                </div>
+                <div class="bottom">
+                    <ul class="listcard cards">
+                        {% for lab in labs.labs.all %}
+                        <li class="card">
+                            <div class="imager_box">
+                                <div class="img-container">
+                                    <img src="{{lab.image.url}}" alt="Image" />
+                                </div>
+                            </div>
+                            <div class="details">
+                                <h4 class="sub-title">{{lab.title|capfirst}}</h4>
+                                <p>{{lab.description|truncatewords:30}}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <button class="slick-preve slick-arrow" aria-label="Previous" type="button">
+                        <img src="{% static 'assets/icons/arrow_back.svg' %}" alt="Icon" />
+                    </button>
+                    <button class="slick-nexte slick-arrow" aria-label="Next" type="button">
+                        <img src="{% static 'assets/icons/arrow_forward.svg' %}" alt="Icon" />
+                    </button>
+                </div>
+            </div> <!-- wrapper > End -->
+        </section>
+        <section id="internships">
+            <div class="wrapper">
+                <div class="all-contents">
+                    <div class="left">
+                        <div class="top">
+                            <div class="image-container">
+                                {% for gallery in internships.gallery.all|slice:":1" %}
+                                <img src="{{gallery.image.url}}" alt="Image" />
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="bottom">
+                            <div class="bottom-images">
+                                {% for gallery in internships.gallery.all|slice:"1:" %}
+                                <div class=" {% cycle "first-image" "second-image" %}">
+                                    <img
+                                        src="{{gallery.image.url}}"
+                                        alt="Image"
+                                    />
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <h3>Internships</h3>
+                        <h2>
+                            {{ internships.title|linebreaksbr|capfirst }}
+                        </h2>
+                        <p>
+                            {{internships.description|truncatewords:30}}
+                        </p>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        <section id="service">
+            <section class="widgets first">
+                <div class="main-content">
+                    <h3 class="grey-content">Hostel service</h3>
+                    {% if hotel_services.title %}
+                    <h2>{{ hotel_services.title|highlight_word:hotel_services.highlight_title|safe|capfirst }} </h2>
+                    {% endif %}
+                    <p>{{hotel_services.description|truncatewords:55}}</p>
+                </div>
+                <div class="imager-content">
+                    <div class="hostel-img right">
+                        <img src="{{hotel_services.image.url}}" alt="Images">
+                    </div>
+                </div>
+            </section>
+            <section class="widgets">
+                <div class="imager-content">
+                    <div class="hostel-img">
+                        <img src="{{college_grounds.image.url}}" alt="Image">
+                    </div>
+                </div>
+                <div class="main-content">
+                    <h3 class="grey-content">College ground</h3>
+                    {% if college_grounds.title %}
+                    <h2>{{ college_grounds.title|highlight_word:college_grounds.highlight_title|safe|capfirst }}</h2>
+                    {% endif %}
+                    <p>{{college_grounds.description|truncatewords:55}}</p>
+                </div>
+            </section>
+        </section>
+        {% include "../../includes/footer.html" %}
+{% endblock content %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+{% load static %}
+{% block content %}
+        <!-- footer -->
+        <footer>
+            <div class="container">
+                <div class=" wrapper">
+                    <div class="col-one">
+                        <div class="logo-container">
+                            <a href="{% url 'web:home_page' %}"><img src="{{footer.logo.image.url}}" alt="logo" /></a>
+                        </div>
+                        <div class="content">
+                            <p>{{footer.logo.title|capfirst}}</p>
+                        </div>
+                        <div class="social">
+                            {% for media in footer.social_media %}
+                            <a href="{{media.url|default_if_none:""}}" {% if media.url %} target="_blank"> {% endif %}<img src="{{media.icon.url}}" alt="{{media.title}}" /> </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-two">
+                        <h4>Contact Us</h4>
+                        <div class="contact">
+                            <div class="connect">
+                                <div class="logo-container">
+                                    <img src="{% static 'assets/icons/phone.svg' %}" alt="phone">
+                                </div>
+                                <a href="tel:{{footer.contact_us_detail.phone_number}}">{{ footer.contact_us_detail.phone_number }}</a>
+                            </div>
+                            <div class="connect">
+                                <div class="logo-container" onclick="window.location.href='{{ footer.contact_us_detail.map_link }}'">
+                                    <img src="{% static 'assets/icons/location.svg' %}" alt="location">
+                                </div>
+                                <a href="{{footer.contact_us_detail.map_link}}" target="_blank">{{ footer.contact_us_detail.address }}</a>
+                            </div>
+                            <div class="connect">
+                                <div class="logo-container">
+                                    <img src="{% static 'assets/icons/email.svg' %}" alt="email">
+                                </div>
+                                <a href="mailto:{{ footer.contact_us_detail.email }}"target="_blank">{{ footer.contact_us_detail.email }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-three">
+                        <h4>Terms & Policy</h4>
+                        <div class="terms">
+                            <a href="{% url 'web:coming_soon_page' %}">Security</a>
+                            <a href="{% url 'web:coming_soon_page' %}">Terms & Condition</a>
+                        </div>
+                    </div>
+    
+                    <a href="javascript:void(0);">
+                        <div class="backtotop">
+                            <img src="{% static 'assets/icons/arrow.svg' %}" alt="Icon" />
+                        </div>
+                    </a>
+                </div> <!-- Wrapper > End -->
+            </div>
+            <div class="bottom">
+                <h4>© All rights reserved | Designed and developed by <a href="https://tegain.com/" target="_blank">Tegain</a></h4>
+            </div>
+        </footer><!-- footer > End -->
+
+{% endblock content %}

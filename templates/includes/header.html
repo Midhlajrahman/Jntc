@@ -1,0 +1,116 @@
+{% load static %} 
+{% block content %}
+<!-- header -->
+<header>
+    <div class="wrapper">
+        <!-- Logo -->
+        <h1>
+            <a href="{% url 'web:home_page' %}"><img src="{{footer.logo.image.url}}" alt="Icon" /></a>
+        </h1>
+        <div class="dropdwn">
+            <nav>
+                <ul class="main-nav">
+                    <li>
+                        <a class="nav-link" href="{% url 'web:home_page' %}">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'about:about_page' %}">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" >Resources <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="sub-nav">
+                            <span><a href="{% url 'resources:facilities_page' %}">Facilities</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">Student Support</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">Activities</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">Research and Innovation</a></span>
+                            <span><a href="{% url 'resources:gallery_page' %}">Gallery</a></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="nav-link">Academics <i class="fa-solid fa-caret-down"></i></a>
+                        <div class="sub-nav">
+                            <span><a href="{% url 'academic:programmes_page' %}">Programmes</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">IIQA</a></span>
+                            <span><a href="{% url 'academic:academic_calender' %}">Academic Calendar</a></span>
+                            <span><a href="{% url 'academic:evaluation_policies' %}">Evaluation Policies</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">Programme Feedback</a></span>
+                            <span><a href="{% url 'academic:accounts' %}">Accounts</a></span>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'iqac:iqac_page' %}">IQAC</a>
+                    </li>
+                    <li>
+                        <a class="nav-link">Student Zone <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                        <div class="sub-nav">
+                            <span><a href="{% url 'student_zone:results_page' %}">Results</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">Exam Fees Payment</a></span>
+                            <span><a href="{% url 'student_zone:downloads_page' %}">Downloads</a></span>
+                            <span><a href="{% url 'web:coming_soon_page' %}">Blog</a></span>
+                        </div>
+                    </li>
+                    <li><a class="nav-link" href="{% url 'alumni:alumni_page' %}">Alumni</a></li>
+                    <li><a class="nav-link" href="{% url 'contact:contact_us_page' %}">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- MobileMenu -->
+
+        <a id="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </a>
+
+        <nav id="mobile-menu">
+            <ul class="main-nav">
+                <li>
+                    <a class="nav-link" href="{% url 'web:home_page' %}">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'about:about_page' %}">About</a>
+                </li>
+                <li>
+                    <a class="nav-link mobile-menu-dropdown">Resources <i class="fa-solid fa-caret-down"></i></a>
+                    <div class="drop-down-sub-nav">
+                        <span><a href="{% url 'resources:facilities_page' %}">Facilities</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">Student Support</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">Activities</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">Research and Innovation</a></span>
+                        <span><a href="{% url 'resources:gallery_page' %}">Gallery</a></span>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link mobile-menu-dropdown">Academics <i class="fa-solid fa-caret-down"></i></a>
+                    <div class="drop-down-sub-nav">
+                        <span><a href="{% url 'academic:programmes_page' %}">Programmes</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">IIQA</a></span>
+                        <span><a href="{% url 'academic:academic_calender' %}">Academic Calendar</a></span>
+                        <span><a href="{% url 'academic:evaluation_policies' %}">Evaluation Policies</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">Programme Feedback</a></span>
+                        <span><a href="{% url 'academic:accounts' %}">Accounts</a></span>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link" href="{% url 'iqac:iqac_page' %}">IQAC</a>
+                </li>
+                <li>
+                    <a class="nav-link mobile-menu-dropdown">Student Zone <i class="fa-solid fa-caret-down"></i>
+                    </a>
+                    <div class="drop-down-sub-nav">
+                        <span><a href="{% url 'student_zone:results_page' %}">Results</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">Exam Fees Payment</a></span>
+                        <span><a href="{% url 'student_zone:downloads_page' %}">Downloads</a></span>
+                        <span><a href="{% url 'web:coming_soon_page' %}">Blog</a></span>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="{% url 'alumni:alumni_page' %}">Alumni</a></li>
+                <li><a class="nav-link" href="{% url 'contact:contact_us_page' %}">Contact Us</a></li>
+            </ul>
+            <span class="close"><i class="fa-solid fa-xmark"></i></span>
+        </nav>
+    </div>
+    <span class="overlay"></span>
+</header>
+<!-- header > End -->
+{% endblock content %}

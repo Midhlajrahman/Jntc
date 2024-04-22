@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    background: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper-secondary {
+    width: 85%;
+    margin: 0 auto;
+}
+
+#spotlight {
+    padding: 8% 0 8%;
+    background: linear-gradient(90deg, #032a58 38.86%, rgba(3, 42, 88, 0) 100%),
+        url("../../images/academic-caalendar-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#spotlight .left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#spotlight .left h1 {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+
+#spotlight .left p {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    width: 30%;
+}
+
+#academic-calendar {
+    padding: 80px 0 100px;
+    background-color: #f9f9f9;
+}
+#academic-calendar h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: #232323;
+    margin-bottom: 20px;
+}
+#academic-calendar h1 span {
+    color: #054289;
+    font-weight: 500;
+}
+#academic-calendar .top {
+    display: flex;
+    flex-direction: column;
+    /* gap: 25px; */
+}
+
+#academic-calendar .top h2 {
+    font-size: 24px;
+    color: #000000;
+    text-align: left;
+    font-weight: 400;
+    margin-bottom: -15px;
+    margin-bottom: 25px;
+}
+#academic-calendar .top .years {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    width: max-content;
+    height: 46px;
+    /* margin-bottom: 25px; */
+    margin-bottom: 20px;
+}
+#academic-calendar .top .years button {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #232323;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#academic-calendar .top .years button.active {
+    background-color: #054289;
+    color: #fff;
+}
+#academic-calendar .top .years .line {
+    background-color: #e1e1e1;
+    height: 100%;
+    width: 1px;
+}
+#academic-calendar .top .result {
+    display: none;
+}
+#academic-calendar .top .result.active {
+    display: block;
+}
+#academic-calendar .top .result .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#academic-calendar .top .result .content .result-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    padding: 20px;
+    box-shadow: 7px 11px 30px 0px rgba(0, 0, 0, 0.06);
+}
+#academic-calendar .top .result .content .result-card .icon {
+    width: 20px;
+}
+#academic-calendar .top .result .content .result-card .icon:last-child {
+    width: 15px;
+    margin-left: auto;
+}
+#academic-calendar .top .result .content .result-card span {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+#academic-calendar .bottom {
+    /* display: flex;
+    flex-direction: column; */
+    display: none;
+}
+#academic-calendar .bottom.active {
+    display: block;
+}
+#academic-calendar .bottom h2 {
+    font-size: 24px;
+    color: #000000;
+    text-align: left;
+    font-weight: 400;
+    margin-bottom: 14px;
+}
+#academic-calendar .bottom .result {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+#academic-calendar .bottom .result .result-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+#academic-calendar .bottom .result .result-card .icon {
+    width: 20px;
+}
+
+#academic-calendar .bottom .result .result-card .icon:last-child {
+    width: 15px;
+    margin-left: auto;
+}
+#academic-calendar .bottom .result .result-card span {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media all and (max-width: 1280px) {
+    #spotlight .left p {
+        width: 40%;
+    }
+    #spotlight .left h1 {
+        font-size: 50px;
+    }
+    #download {
+        padding: 70px 0;
+    }
+    #academic-calendar h1 {
+        font-size: 30px;
+    }
+    #academic-calendar {
+        padding: 70px 0 80px;
+    }
+}
+
+@media all and (max-width: 1080px) {
+    #academic-calendar h1 {
+        font-size: 28px;
+    }
+}
+
+/* // 980PX  // */
+@media all and (max-width: 980px) {
+    #spotlight .left h1 {
+        text-align: center;
+        font-size: 45px;
+    }
+    #spotlight .left p {
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #academic-calendar h1 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    #academic-calendar .top {
+        /* gap: 20px; */
+    }
+    #academic-calendar .top h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    #academic-calendar .bottom h2 {
+        font-size: 22px;
+    }
+    #academic-calendar {
+        padding: 60px 0 70px;
+    }
+}
+
+/* // 768PX  // */
+@media all and (max-width: 768px) {
+    #spotlight .left p {
+        width: 60%;
+    }
+    #spotlight .left h1 {
+        font-size: 40px;
+    }
+}
+
+/* // 680PX  // */
+@media all and (max-width: 680px) {
+    #spotlight .left p {
+        width: 70%;
+    }
+    #spotlight .left h1 {
+        font-size: 35px;
+    }
+    #spotlight {
+        padding: 150px 0;
+    }
+
+    #academic-calendar h1 {
+        font-size: 24px;
+    }
+    #academic-calendar {
+        padding: 50px 0 60px;
+    }
+}
+
+/* // 640PX  // */
+@media all and (max-width: 640px) {
+    #spotlight .left p {
+        width: 80%;
+    }
+    #spotlight .left h1 {
+        font-size: 30px;
+    }
+
+    #academic-calendar h1 {
+        font-size: 22px;
+    }
+    #academic-calendar .top .years {
+        width: 100%;
+        overflow-x: scroll;
+    }
+    #academic-calendar .top .years button {
+        font-size: 15px;
+        padding: 9px 14px;
+        display: flex;
+        flex-shrink: 0;
+    }
+    #academic-calendar .top .years .line {
+        display: flex;
+        flex-shrink: 0;
+    }
+    #academic-calendar .top h2 {
+        font-size: 20px;
+        margin-bottom: 14px;
+    }
+    #academic-calendar .bottom h2 {
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width: 540px) {
+    #academic-calendar .bottom .result .content .result-card {
+        padding: 15px;
+    }
+    #academic-calendar .bottom .result .content .result-card {
+        padding: 15px;
+    }
+    #academic-calendar .top .result .content .result-card {
+        padding: 15px;
+    }
+    #academic-calendar {
+        padding: 40px 0 50px;
+    }
+}
+
+/* // 480PX  // */
+@media all and (max-width: 480px) {
+    .wrapper-secondary {
+        width: 90%;
+    }
+
+    #spotlight {
+        display: flex;
+        align-items: center;
+        min-height: 60vh;
+        padding: 80px 0;
+    }
+    #spotlight .left {
+        gap: 12px;
+    }
+    #spotlight .left p {
+        width: 90%;
+        font-size: 14px;
+    }
+    #spotlight .left h1 {
+        font-size: 25px;
+    }
+
+    #academic-calendar .top h2 {
+        font-size: 18px;
+    }
+    #academic-calendar .bottom h2 {
+        font-size: 18px;
+    }
+    #academic-calendar h1 {
+        margin-bottom: 10px;
+    }
+    #academic-calendar .top .years button {
+        font-size: 14px;
+    }
+    #academic-calendar .bottom .result .result-card span {
+        font-size: 14px;
+    }
+    #academic-calendar .bottom .result .result-card .icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    #academic-calendar .top .result .result-card span {
+        font-size: 14px;
+    }
+    #academic-calendar .top .result .result-card .icon {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media all and (max-width: 420px) {
+    #academic-calendar .bottom .result {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        gap: 12px;
+    }
+    #academic-calendar .top .result .content {
+        flex-direction: column;
+        gap: 12px;
+    }
+    #academic-calendar .top .result .content .result-card {
+        width: 100%;
+    }
+}
